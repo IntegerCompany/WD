@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40D3DC6C84946B5C7C05BD9F /* Pods_WishDish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 282748EB743F8779EB9DF707 /* Pods_WishDish.framework */; };
 		92E7E88E1BCBF73100232106 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7E88D1BCBF73100232106 /* AppDelegate.swift */; };
 		92E7E8901BCBF73100232106 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7E88F1BCBF73100232106 /* ViewController.swift */; };
 		92E7E8931BCBF73100232106 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92E7E8911BCBF73100232106 /* Main.storyboard */; };
@@ -14,6 +15,12 @@
 		92E7E8981BCBF73100232106 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92E7E8961BCBF73100232106 /* LaunchScreen.storyboard */; };
 		92E7E8A31BCBF73100232106 /* WishDishTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7E8A21BCBF73100232106 /* WishDishTests.swift */; };
 		92E7E8AE1BCBF73100232106 /* WishDishUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7E8AD1BCBF73100232106 /* WishDishUITests.swift */; };
+		92E7E8BE1BCBFD8000232106 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7E8BD1BCBFD8000232106 /* Extensions.swift */; settings = {ASSET_TAGS = (); }; };
+		92E7E8C01BCC023E00232106 /* ImHungryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7E8BF1BCC023E00232106 /* ImHungryViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		92E7E8C21BCC025C00232106 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7E8C11BCC025C00232106 /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		92E7E8C41BCC028500232106 /* SearchRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7E8C31BCC028500232106 /* SearchRestaurantViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		92E7E8C61BCC02A200232106 /* WishListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7E8C51BCC02A200232106 /* WishListViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		92E7E8C81BCC030E00232106 /* UploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7E8C71BCC030E00232106 /* UploadImageViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		282748EB743F8779EB9DF707 /* Pods_WishDish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WishDish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AE6E7550CBE9E30CBB1C4AF /* Pods-WishDish.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WishDish.release.xcconfig"; path = "Pods/Target Support Files/Pods-WishDish/Pods-WishDish.release.xcconfig"; sourceTree = "<group>"; };
 		92E7E88A1BCBF73100232106 /* WishDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WishDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E7E88D1BCBF73100232106 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92E7E88F1BCBF73100232106 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +56,13 @@
 		92E7E8A91BCBF73100232106 /* WishDishUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishDishUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E7E8AD1BCBF73100232106 /* WishDishUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishDishUITests.swift; sourceTree = "<group>"; };
 		92E7E8AF1BCBF73100232106 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92E7E8BD1BCBFD8000232106 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		92E7E8BF1BCC023E00232106 /* ImHungryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImHungryViewController.swift; sourceTree = "<group>"; };
+		92E7E8C11BCC025C00232106 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		92E7E8C31BCC028500232106 /* SearchRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRestaurantViewController.swift; sourceTree = "<group>"; };
+		92E7E8C51BCC02A200232106 /* WishListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListViewController.swift; sourceTree = "<group>"; };
+		92E7E8C71BCC030E00232106 /* UploadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadImageViewController.swift; sourceTree = "<group>"; };
+		C23BC4A4805650FE6094CBA7 /* Pods-WishDish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WishDish.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WishDish/Pods-WishDish.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40D3DC6C84946B5C7C05BD9F /* Pods_WishDish.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +91,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E368B774F80B2360EF0A727 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C23BC4A4805650FE6094CBA7 /* Pods-WishDish.debug.xcconfig */,
+				7AE6E7550CBE9E30CBB1C4AF /* Pods-WishDish.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		92E7E8811BCBF73100232106 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +107,8 @@
 				92E7E8A11BCBF73100232106 /* WishDishTests */,
 				92E7E8AC1BCBF73100232106 /* WishDishUITests */,
 				92E7E88B1BCBF73100232106 /* Products */,
+				5E368B774F80B2360EF0A727 /* Pods */,
+				FE5774E52F857EAD12E6CEB4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +125,10 @@
 		92E7E88C1BCBF73100232106 /* WishDish */ = {
 			isa = PBXGroup;
 			children = (
+				92E7E8BB1BCBF7C100232106 /* VC */,
 				92E7E88D1BCBF73100232106 /* AppDelegate.swift */,
-				92E7E88F1BCBF73100232106 /* ViewController.swift */,
-				92E7E8911BCBF73100232106 /* Main.storyboard */,
-				92E7E8941BCBF73100232106 /* Assets.xcassets */,
-				92E7E8961BCBF73100232106 /* LaunchScreen.storyboard */,
-				92E7E8991BCBF73100232106 /* Info.plist */,
+				92E7E8BC1BCBF7D700232106 /* Resources */,
+				92E7E8BD1BCBFD8000232106 /* Extensions.swift */,
 			);
 			path = WishDish;
 			sourceTree = "<group>";
@@ -125,6 +151,38 @@
 			path = WishDishUITests;
 			sourceTree = "<group>";
 		};
+		92E7E8BB1BCBF7C100232106 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				92E7E8C11BCC025C00232106 /* LoginViewController.swift */,
+				92E7E88F1BCBF73100232106 /* ViewController.swift */,
+				92E7E8BF1BCC023E00232106 /* ImHungryViewController.swift */,
+				92E7E8C31BCC028500232106 /* SearchRestaurantViewController.swift */,
+				92E7E8C51BCC02A200232106 /* WishListViewController.swift */,
+				92E7E8C71BCC030E00232106 /* UploadImageViewController.swift */,
+			);
+			name = VC;
+			sourceTree = "<group>";
+		};
+		92E7E8BC1BCBF7D700232106 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				92E7E8911BCBF73100232106 /* Main.storyboard */,
+				92E7E8941BCBF73100232106 /* Assets.xcassets */,
+				92E7E8961BCBF73100232106 /* LaunchScreen.storyboard */,
+				92E7E8991BCBF73100232106 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		FE5774E52F857EAD12E6CEB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				282748EB743F8779EB9DF707 /* Pods_WishDish.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +190,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92E7E8B21BCBF73100232106 /* Build configuration list for PBXNativeTarget "WishDish" */;
 			buildPhases = (
+				05E9A8C22B9F744B2AD84ECC /* Check Pods Manifest.lock */,
 				92E7E8861BCBF73100232106 /* Sources */,
 				92E7E8871BCBF73100232106 /* Frameworks */,
 				92E7E8881BCBF73100232106 /* Resources */,
+				756D2950600F0F70CC5691AC /* Embed Pods Frameworks */,
+				6FDB050B829AA38C09656F1B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -250,12 +311,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		05E9A8C22B9F744B2AD84ECC /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6FDB050B829AA38C09656F1B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WishDish/Pods-WishDish-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		756D2950600F0F70CC5691AC /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WishDish/Pods-WishDish-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		92E7E8861BCBF73100232106 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				92E7E8901BCBF73100232106 /* ViewController.swift in Sources */,
+				92E7E8C81BCC030E00232106 /* UploadImageViewController.swift in Sources */,
+				92E7E8C61BCC02A200232106 /* WishListViewController.swift in Sources */,
+				92E7E8C41BCC028500232106 /* SearchRestaurantViewController.swift in Sources */,
+				92E7E8C01BCC023E00232106 /* ImHungryViewController.swift in Sources */,
+				92E7E8BE1BCBFD8000232106 /* Extensions.swift in Sources */,
+				92E7E8C21BCC025C00232106 /* LoginViewController.swift in Sources */,
 				92E7E88E1BCBF73100232106 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,22 +509,24 @@
 		};
 		92E7E8B31BCBF73100232106 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C23BC4A4805650FE6094CBA7 /* Pods-WishDish.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WishDish/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = IntegerCompany.WishDish;
+				PRODUCT_BUNDLE_IDENTIFIER = com.IntegerCompany.WishDish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		92E7E8B41BCBF73100232106 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7AE6E7550CBE9E30CBB1C4AF /* Pods-WishDish.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WishDish/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = IntegerCompany.WishDish;
+				PRODUCT_BUNDLE_IDENTIFIER = com.IntegerCompany.WishDish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -481,6 +598,7 @@
 				92E7E8B41BCBF73100232106 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		92E7E8B51BCBF73100232106 /* Build configuration list for PBXNativeTarget "WishDishTests" */ = {
 			isa = XCConfigurationList;
@@ -489,6 +607,7 @@
 				92E7E8B71BCBF73100232106 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		92E7E8B81BCBF73100232106 /* Build configuration list for PBXNativeTarget "WishDishUITests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +616,7 @@
 				92E7E8BA1BCBF73100232106 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

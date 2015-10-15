@@ -20,6 +20,17 @@ class RoundedVIew: UIButton {
     
 }
 
+class RoundedBlur: UIVisualEffectView {
+    
+    @IBInspectable var cornerRadius: CGFloat = 0 {
+        didSet {
+            layer.cornerRadius = cornerRadius
+            layer.masksToBounds = cornerRadius > 0
+        }
+    }
+    
+}
+
 extension UIImageView {
     func downloadedFrom(link link:String, contentMode mode: UIViewContentMode) {
         contentMode = mode

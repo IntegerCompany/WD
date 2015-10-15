@@ -13,6 +13,7 @@ import FBSDKLoginKit
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var fbLoginButton: FBSDKLoginButton? = FBSDKLoginButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +24,18 @@ class LoginViewController: UIViewController {
         }
         self.fbLoginButton!.readPermissions = ["public_profile", "email", "user_friends"]
         self.fbLoginButton!.delegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.hidden = true
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.navigationController?.navigationBar.hidden = false
     }
 }
 extension LoginViewController : FBSDKLoginButtonDelegate {

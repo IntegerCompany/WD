@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		40D3DC6C84946B5C7C05BD9F /* Pods_WishDish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 282748EB743F8779EB9DF707 /* Pods_WishDish.framework */; };
+		929BA81C1BCF9CC100D039A7 /* SocialNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929BA81B1BCF9CC100D039A7 /* SocialNetwork.swift */; settings = {ASSET_TAGS = (); }; };
 		92E7E88E1BCBF73100232106 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7E88D1BCBF73100232106 /* AppDelegate.swift */; };
 		92E7E8901BCBF73100232106 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7E88F1BCBF73100232106 /* ViewController.swift */; };
 		92E7E8931BCBF73100232106 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92E7E8911BCBF73100232106 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		282748EB743F8779EB9DF707 /* Pods_WishDish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WishDish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AE6E7550CBE9E30CBB1C4AF /* Pods-WishDish.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WishDish.release.xcconfig"; path = "Pods/Target Support Files/Pods-WishDish/Pods-WishDish.release.xcconfig"; sourceTree = "<group>"; };
+		929BA81B1BCF9CC100D039A7 /* SocialNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNetwork.swift; sourceTree = "<group>"; };
 		92E7E88A1BCBF73100232106 /* WishDish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WishDish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E7E88D1BCBF73100232106 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92E7E88F1BCBF73100232106 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		929BA81A1BCF9C9500D039A7 /* SocialHooks */ = {
+			isa = PBXGroup;
+			children = (
+				929BA81B1BCF9CC100D039A7 /* SocialNetwork.swift */,
+			);
+			name = SocialHooks;
+			sourceTree = "<group>";
+		};
 		92E7E8811BCBF73100232106 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +135,7 @@
 		92E7E88C1BCBF73100232106 /* WishDish */ = {
 			isa = PBXGroup;
 			children = (
+				929BA81A1BCF9C9500D039A7 /* SocialHooks */,
 				92E7E8BB1BCBF7C100232106 /* VC */,
 				92E7E88D1BCBF73100232106 /* AppDelegate.swift */,
 				92E7E8BC1BCBF7D700232106 /* Resources */,
@@ -367,6 +378,7 @@
 				92E7E8901BCBF73100232106 /* ViewController.swift in Sources */,
 				92E7E8C81BCC030E00232106 /* UploadImageViewController.swift in Sources */,
 				92E7E8C61BCC02A200232106 /* WishListViewController.swift in Sources */,
+				929BA81C1BCF9CC100D039A7 /* SocialNetwork.swift in Sources */,
 				92E7E8C41BCC028500232106 /* SearchRestaurantViewController.swift in Sources */,
 				92E7E8C01BCC023E00232106 /* ImHungryViewController.swift in Sources */,
 				92E7E8BE1BCBFD8000232106 /* Extensions.swift in Sources */,
@@ -516,6 +528,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.IntegerCompany.WishDish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -528,6 +541,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.IntegerCompany.WishDish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -9,5 +9,9 @@
 import UIKit
 
 class UploadImageViewController: UIViewController {
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
 }

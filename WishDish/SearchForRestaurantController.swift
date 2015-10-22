@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class SearchForRestaurantController: UIViewController {
+class SearchForRestaurantController: BaseViewController {
     
     @IBOutlet weak var wdlButton: UIButton!
     @IBOutlet weak var nextDishButton: UIButton!

@@ -16,8 +16,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if FBSDKAccessToken.currentAccessToken() == nil {
+      
+              if FBSDKAccessToken.currentAccessToken() == nil {
             print("Not logged in..")
         }else{
             print("Logged in..")
@@ -48,8 +48,8 @@ extension LoginViewController : FBSDKLoginButtonDelegate {
             {
                 // Do work
             }
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MainViewController")
-            self.navigationController?.presentViewController(vc!, animated: true, completion: nil)
+          
+          self.navigationController?.popViewControllerAnimated(true)
         }
         else
         {

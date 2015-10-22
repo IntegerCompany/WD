@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		40D3DC6C84946B5C7C05BD9F /* Pods_WishDish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 282748EB743F8779EB9DF707 /* Pods_WishDish.framework */; };
+		665842961BD921B900C1879C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665842951BD921B900C1879C /* BaseViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		665842981BD929F500C1879C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665842971BD929F500C1879C /* MenuViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		929BA81C1BCF9CC100D039A7 /* SocialNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929BA81B1BCF9CC100D039A7 /* SocialNetwork.swift */; settings = {ASSET_TAGS = (); }; };
 		929BA81E1BCFE9B100D039A7 /* SearchForRestaurantController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929BA81D1BCFE9B100D039A7 /* SearchForRestaurantController.swift */; settings = {ASSET_TAGS = (); }; };
 		929BA8201BCFF9D000D039A7 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929BA81F1BCFF9D000D039A7 /* Cells.swift */; settings = {ASSET_TAGS = (); }; };
@@ -44,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		282748EB743F8779EB9DF707 /* Pods_WishDish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WishDish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		665842951BD921B900C1879C /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		665842971BD929F500C1879C /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		7AE6E7550CBE9E30CBB1C4AF /* Pods-WishDish.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WishDish.release.xcconfig"; path = "Pods/Target Support Files/Pods-WishDish/Pods-WishDish.release.xcconfig"; sourceTree = "<group>"; };
 		929BA81B1BCF9CC100D039A7 /* SocialNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNetwork.swift; sourceTree = "<group>"; };
 		929BA81D1BCFE9B100D039A7 /* SearchForRestaurantController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchForRestaurantController.swift; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 				92E7E8C51BCC02A200232106 /* WishListViewController.swift */,
 				92E7E8C71BCC030E00232106 /* UploadImageViewController.swift */,
 				929BA81D1BCFE9B100D039A7 /* SearchForRestaurantController.swift */,
+				665842951BD921B900C1879C /* BaseViewController.swift */,
+				665842971BD929F500C1879C /* MenuViewController.swift */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -382,8 +388,10 @@
 				92E7E8C81BCC030E00232106 /* UploadImageViewController.swift in Sources */,
 				92E7E8C61BCC02A200232106 /* WishListViewController.swift in Sources */,
 				929BA81C1BCF9CC100D039A7 /* SocialNetwork.swift in Sources */,
+				665842961BD921B900C1879C /* BaseViewController.swift in Sources */,
 				929BA81E1BCFE9B100D039A7 /* SearchForRestaurantController.swift in Sources */,
 				92E7E8C01BCC023E00232106 /* ImHungryViewController.swift in Sources */,
+				665842981BD929F500C1879C /* MenuViewController.swift in Sources */,
 				92E7E8BE1BCBFD8000232106 /* Extensions.swift in Sources */,
 				929BA8201BCFF9D000D039A7 /* Cells.swift in Sources */,
 				92E7E8C21BCC025C00232106 /* LoginViewController.swift in Sources */,

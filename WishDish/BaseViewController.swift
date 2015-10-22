@@ -1,37 +1,28 @@
 //
-//  WishListViewController.swift
+//  BaseViewController.swift
 //  WishDish
 //
-//  Created by Max Vitruk on 12.10.15.
+//  Created by Dmytro Lohush on 10/22/15.
 //  Copyright © 2015 integer. All rights reserved.
 //
 
 import UIKit
 
-class WishListViewController: UITableViewController ,UIPopoverPresentationControllerDelegate{
+protocol MenuCallBackExtension {  
+  func menuFromMenu(sender : UIButton)
+}
+
+class BaseViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+  
   var popoverContent : MenuViewController!
+  
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  
+    popoverContent = self.storyboard?.instantiateViewControllerWithIdentifier("MenuViewController") as? MenuViewController
 
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      initBarMenus()
-      
-      popoverContent = self.storyboard?.instantiateViewControllerWithIdentifier("MenuViewController") as? MenuViewController
-
-    }
-  
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10
-  }
-  
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("WishDish") as! WishDishlistCell
-    cell.counter.text = "\(indexPath.row + 1)."
-    
-    return cell
-  }
-  
-  func initBarMenus(){
     let rightView = UIView(frame:  CGRectMake(0, 0, 80, 30))
     rightView.backgroundColor = UIColor.clearColor()
     
@@ -50,6 +41,7 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
     
     let rightBtn = UIBarButtonItem(customView: rightView)
     self.navigationItem.rightBarButtonItem = rightBtn;
+    // Do any additional setup after loading the view.
   }
   
   func showMenu() {
@@ -72,11 +64,9 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
 
 }
 
-extension WishListViewController  : MenuCallBackExtension {
-
+extension BaseViewController  : MenuCallBackExtension {
   func menuFromMenu(sender : UIButton){
     self.showMenu()
   }
 }
-
 

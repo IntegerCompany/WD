@@ -10,7 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKShareKit
 
-class ViewController: UIViewController, UIDocumentInteractionControllerDelegate {
+class ViewController: BaseViewController, UIDocumentInteractionControllerDelegate {
 
     @IBOutlet weak var usetTempImage: UIImageView!
     
@@ -48,6 +48,7 @@ class ViewController: UIViewController, UIDocumentInteractionControllerDelegate 
     @IBAction func instagramButton(sender: UIButton) {
         SocialNetwork.shareWithInstagram(self, baseView: self.view, fromImage: self.usetTempImage)
     }
-}
+  
+  }
 
 

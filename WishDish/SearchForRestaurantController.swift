@@ -8,50 +8,86 @@
 
 import UIKit
 import MapKit
+import Alamofire
 
 class SearchForRestaurantController: BaseViewController {
-    
-    @IBOutlet weak var wdlButton: UIButton!
-    @IBOutlet weak var nextDishButton: UIButton!
-    @IBOutlet weak var bookDishButton: UIButton!
-    @IBOutlet weak var likeDishButton: UIButton!
-    @IBOutlet weak var wdMap: MKMapView!
-    
-    @IBOutlet weak var dishName: UILabel!
-    @IBOutlet weak var restaurantName: UILabel!
-    @IBOutlet weak var address: UILabel!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var website: UILabel!
-    
-    let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
+  
+  @IBOutlet weak var wdlButton: UIButton!
+  @IBOutlet weak var nextDishButton: UIButton!
+  @IBOutlet weak var bookDishButton: UIButton!
+  @IBOutlet weak var likeDishButton: UIButton!
+  @IBOutlet weak var wdMap: MKMapView!
+  
+  @IBOutlet weak var dishName: UILabel!
+  @IBOutlet weak var restaurantName: UILabel!
+  @IBOutlet weak var address: UILabel!
+  @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var website: UILabel!
+  
+  var restaurantId = 0;
+  var dishId = 0;
+  var dishList = [Dish]()
+  
     let regionRadius: CLLocationDistance = 1000
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    getInfoFromApi()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        centerMapOnLocation(initialLocation)
-
+  }
+  func centerMapOnLocation(location: CLLocation) {
+    let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
+      regionRadius * 2.0, regionRadius * 2.0)
+    wdMap.setRegion(coordinateRegion, animated: true)
+  }
+  
+  func getInfoFromApi(){
+    Alamofire.request(.GET, "http://wdl.webdecision.com.ua/api/restaurants/\(self.restaurantId)/\(self.dishId)", headers: self.headers).responseJSON{
+      response in
+      print(JSON(response.result.value!))
+      let json = JSON(response.result.value!)
+      for (_,subJson):(String,JSON) in json["dishes"]{
+        let dish = Dish()
+        dish.description = subJson["description"].string!
+        dish.restaurantId = Int(subJson["restaurant_id"].string!)!
+        dish.id = Int(subJson["id"].string!)!
+        dish.instagramUrl = subJson["url_instagram"].string!
+        dish.photoUrl = subJson["photo"].string!
+        dish.name = subJson["name"].string!
+        if(dish.id == self.dishId){
+          self.dishName.text = dish.name
+        }
+        self.dishList.append(dish)
+      }
+      self.restaurantName.text = json["restaurant"]["name"].string!
+      self.address.text = json["restaurant"]["address"].string!
+      self.website.text = json["restaurant"]["url_site"].string!
+      let coordinates = json["restaurant"]["coordinates"].string!
+      let coordinatesArr = coordinates.characters.split{$0 == ","}.map(String.init)
+      let initialLocation = CLLocation(latitude: Double(coordinatesArr[0])!, longitude: Double(coordinatesArr[1])!)
+      self.centerMapOnLocation(initialLocation)
+      self.tableView.reloadData()
     }
-    func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
-            regionRadius * 2.0, regionRadius * 2.0)
-        wdMap.setRegion(coordinateRegion, animated: true)
-    }
+  }
 }
 
 
 extension SearchForRestaurantController : UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return dishList.count
+  }
+  
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier("SearchDishCell") as! SearchDishCell
+    Alamofire.request(.GET, dishList[indexPath.row].photoUrl)
+      .response{ response in
+        cell.dishImage.image = UIImage(data: response.2!)
     }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SearchDishCell") as! SearchDishCell
-        return cell
-    }
+    return cell
+  }
 }
 extension SearchForRestaurantController : UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+  }
 }

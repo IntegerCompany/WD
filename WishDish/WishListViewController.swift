@@ -28,6 +28,13 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
     return dishes.count
   }
   
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let restaurantDetail = self.storyboard?.instantiateViewControllerWithIdentifier("SearchForRestaurantController") as! SearchForRestaurantController
+    restaurantDetail.restaurantId = self.dishes[indexPath.row].restaurantId
+    restaurantDetail.dishId = self.dishes[indexPath.row].id
+    self.navigationController?.pushViewController(restaurantDetail, animated: true)
+  }
+  
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("WishDish") as! WishDishlistCell
     cell.counter.text = "\(indexPath.row + 1)."
@@ -55,6 +62,24 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
     Alamofire.request(.POST, "http://wdl.webdecision.com.ua/api/likes", parameters: parameters, headers: headers).responseJSON{
       response in
       print(response.result.value)
+    }
+  }
+  
+  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+  {
+    if editingStyle == UITableViewCellEditingStyle.Delete {
+      dishIdList.removeAtIndex(indexPath.row)
+      dishes.removeAtIndex(indexPath.row)
+      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+      let parameters = ["update" : [
+        "user_id" : "\(Defaults.getUserId())",
+        "dishes" : dishIdList
+        ]
+      ]
+      Alamofire.request(.POST, "http://wdl.webdecision.com.ua/api/likes", parameters: parameters, headers: headers).responseJSON{
+        response in
+        print(response.result.value)
+      }
     }
   }
   
@@ -127,7 +152,6 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
       }
     }
   }
-  
 }
 
 extension WishListViewController  : MenuCallBackExtension {

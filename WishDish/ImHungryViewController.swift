@@ -32,6 +32,10 @@ class ImHungryViewController: BaseViewController {
   }
   
   @IBAction func like(sender: UIButton) {
+    let restaurantDetail = self.storyboard?.instantiateViewControllerWithIdentifier("SearchForRestaurantController") as! SearchForRestaurantController
+    restaurantDetail.restaurantId = self.dishList[counter].restaurantId
+    restaurantDetail.dishId = self.dishList[counter].id
+    self.navigationController?.pushViewController(restaurantDetail, animated: true)
   }
   
   @IBAction func addToWishList(sender: UIButton) {

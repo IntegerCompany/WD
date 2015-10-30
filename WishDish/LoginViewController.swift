@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Alamofire
 
 class LoginViewController: UIViewController {
     
@@ -46,8 +47,15 @@ extension LoginViewController : FBSDKLoginButtonDelegate {
             print("Login complete.")
             if result.grantedPermissions.contains("email")
             {
-                // Do work
-            }
+              let parameters = ["" : ""]
+              let headers = [
+                "Hash-Key": "34d1a24d7a47f12b38d49bedbe2ffead"
+              ]
+              Alamofire.request(.POST, "", parameters: parameters, headers: headers).responseJSON{
+                response in
+                
+              }
+          }
           
           self.navigationController?.popViewControllerAnimated(true)
         }

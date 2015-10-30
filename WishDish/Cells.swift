@@ -23,3 +23,4 @@ class WishDishlistCell : UITableViewCell{
   @IBAction func nButton(sender: UIButton) {
   }
 }
+

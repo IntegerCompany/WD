@@ -12,10 +12,12 @@ protocol MenuCallBackExtension {
   func menuFromMenu(sender : UIButton)
 }
 
-class BaseViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+class BaseViewController: ResponsiveTextFieldViewController, UIPopoverPresentationControllerDelegate {
   
   var popoverContent : MenuViewController!
-  
+  let headers = [
+    "Hash-Key": "34d1a24d7a47f12b38d49bedbe2ffead"
+  ]
   
   override func viewDidLoad() {
     super.viewDidLoad()

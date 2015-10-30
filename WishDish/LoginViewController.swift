@@ -47,13 +47,18 @@ extension LoginViewController : FBSDKLoginButtonDelegate {
             print("Login complete.")
             if result.grantedPermissions.contains("email")
             {
-              let parameters = ["" : ""]
+              let parameters = ["facebook" : [
+                "facebook_id" : "\(FBSDKAccessToken.currentAccessToken())"
+                ]
+              ]
               let headers = [
                 "Hash-Key": "34d1a24d7a47f12b38d49bedbe2ffead"
               ]
-              Alamofire.request(.POST, "", parameters: parameters, headers: headers).responseJSON{
+              Alamofire.request(.POST, "http://wdl.webdecision.com.ua/api/login", parameters: parameters, headers: headers).responseJSON{
                 response in
-                
+               let json = JSON(response.result.value!)
+                print(response.result.value!)
+                Defaults.setUserId(json["user_id"].int!)
               }
           }
           

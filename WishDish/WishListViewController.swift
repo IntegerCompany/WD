@@ -12,6 +12,7 @@ import Alamofire
 class WishListViewController: UITableViewController ,UIPopoverPresentationControllerDelegate{
   var popoverContent : MenuViewController!
   var dishes = [Dish]()
+  var dishIdList = [Int]()
   let headers = [
     "Hash-Key": "34d1a24d7a47f12b38d49bedbe2ffead"
   ]
@@ -36,19 +37,24 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
         cell.dishImage.image = UIImage(data: response.2!)
     }
     cell.dishDescription.text = dishes[indexPath.row].name
-
+    
     return cell
   }
   
-  override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-    //TODO: save changes to datasource
+  override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {    
     let itemToMove = dishes[fromIndexPath.row]
-        dishes.removeAtIndex(fromIndexPath.row)
-        dishes.insert(itemToMove, atIndex: toIndexPath.row)
-    let parameters = ["" : ""]
-    Alamofire.request(.POST, "", parameters: parameters, headers: headers).responseJSON{
-      responese in
-      
+    dishes.removeAtIndex(fromIndexPath.row)
+    dishes.insert(itemToMove, atIndex: toIndexPath.row)
+    dishIdList.removeAtIndex(fromIndexPath.row)
+    dishIdList.insert(itemToMove.id, atIndex: toIndexPath.row)
+    let parameters = ["update" : [
+      "user_id" : "\(Defaults.getUserId())",
+      "dishes" : dishIdList
+      ]
+    ]
+    Alamofire.request(.POST, "http://wdl.webdecision.com.ua/api/likes", parameters: parameters, headers: headers).responseJSON{
+      response in
+      print(response.result.value)
     }
   }
   
@@ -103,8 +109,9 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
   }
   
   func getDishesFromApi(){
-    Alamofire.request(.GET, "", headers: self.headers).responseJSON{
+    Alamofire.request(.GET, "http://wdl.webdecision.com.ua/api/likes/\(Defaults.getUserId())", headers: self.headers).responseJSON{
       response in
+      print(JSON(response.result.value!))
       let json = JSON(response.result.value!)
       for (_,subJson) : (String, JSON) in json{
         let dish = Dish()
@@ -115,6 +122,8 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
         dish.photoUrl = subJson["photo"].string!
         dish.name = subJson["name"].string!
         self.dishes.append(dish)
+        self.dishIdList.append(dish.id)
+        self.tableView.reloadData()
       }
     }
   }

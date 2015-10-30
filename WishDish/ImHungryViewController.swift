@@ -35,14 +35,14 @@ class ImHungryViewController: BaseViewController {
   }
   
   @IBAction func addToWishList(sender: UIButton) {
-    //TODO: real user_id
+    
     if(dishList.count != 0){
       if !self.wishDishIdList.contains(self.dishList[counter].id){
         self.wishDishIdList.append(dishList[counter].id)
         setInfo()
         print("Adding to wishlist : \(dishList[counter].id)")
         let parameters = ["new" : [
-          "user_id" : "3",
+          "user_id" : "\(Defaults.getUserId())",
           "dishes" : "\(dishList[counter].id)"
           ]
         ]
@@ -54,7 +54,7 @@ class ImHungryViewController: BaseViewController {
         self.wishDishIdList = wishDishIdList.filter{$0 != dishList[counter].id}
         setInfo()
         let parameters = ["update" : [
-          "user_id" : "3",
+          "user_id" : "\(Defaults.getUserId())",
           "dishes" : wishDishIdList
           ]
         ]
@@ -68,12 +68,14 @@ class ImHungryViewController: BaseViewController {
   }
   
   func getDishes(){
-    let headers = [
+      let headers = [
       "Hash-Key": "34d1a24d7a47f12b38d49bedbe2ffead"
     ]
-    //TODO: user_id
-    Alamofire.request(.GET, "http://wdl.webdecision.com.ua/api/dishes/3", headers:headers)
+    
+    Alamofire.request(.GET, "http://wdl.webdecision.com.ua/api/dishes/\(Defaults.getUserId())", headers:headers)
       .responseJSON{ response in
+        self.wishDishIdList.removeAll()
+        self.dishList.removeAll()
         let data = JSON(response.result.value!)
         print(data)
         print(data["liked_dishes"])
@@ -96,20 +98,20 @@ class ImHungryViewController: BaseViewController {
   }
   
   func setInfo(){
-    if case 0...14 = self.counter {
+    if case 0...dishList.count-1 = self.counter {
       let url = self.dishList[counter].photoUrl
       Alamofire.request(.GET, url)
         .response{ response in
           self.image.image = UIImage(data: response.2!)
       }
       self.name.text = self.dishList[counter].name
+      if wishDishIdList.contains(self.dishList[counter].id){
+        self.likeButton.setBackgroundImage(UIImage(named: "instagram_wd"), forState: .Normal)
+      }else{
+        self.likeButton.setBackgroundImage(UIImage(named: "wd_love_wd"), forState: .Normal)
+      }
     }else{
       getDishes()
-    }
-    if wishDishIdList.contains(self.dishList[counter].id){
-      self.likeButton.setBackgroundImage(UIImage(named: "instagram_wd"), forState: .Normal)
-    }else{
-      self.likeButton.setBackgroundImage(UIImage(named: "wd_love_wd"), forState: .Normal)
     }
   }
   

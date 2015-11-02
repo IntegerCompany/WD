@@ -35,6 +35,17 @@ class SearchForRestaurantController: BaseViewController {
     getInfoFromApi()
     
   }
+  
+  @IBAction func book(sender: UIButton) {
+    let parameters = ["dish_id": "\(self.dishId)",
+    "user_id":"\(Defaults.getUserId())"]
+    print(parameters)
+    Alamofire.request(.POST,"http://wdl.webdecision.com.ua/api/book",headers:self.headers,parameters:parameters).responseJSON{
+      response in
+      print(response.result.value!)
+    }
+  }
+  
   func centerMapOnLocation(location: CLLocation) {
     let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
       regionRadius * 2.0, regionRadius * 2.0)
@@ -42,8 +53,9 @@ class SearchForRestaurantController: BaseViewController {
   }
   
   func getInfoFromApi(){
-    Alamofire.request(.GET, "http://wdl.webdecision.com.ua/api/restaurants/\(self.restaurantId)/\(self.dishId)", headers: self.headers).responseJSON{
+    Alamofire.request(.GET, "http://wdl.webdecision.com.ua/api/restaurant/\(self.restaurantId)/\(self.dishId)", headers: self.headers).responseJSON{
       response in
+      print("http://wdl.webdecision.com.ua/api/restaurant/\(self.restaurantId)/\(self.dishId)")
       print(JSON(response.result.value!))
       let json = JSON(response.result.value!)
       for (_,subJson):(String,JSON) in json["dishes"]{
@@ -88,6 +100,7 @@ extension SearchForRestaurantController : UITableViewDataSource {
 }
 extension SearchForRestaurantController : UITableViewDelegate {
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    
+    self.dishId = dishList[indexPath.row].id
+    self.dishName.text = dishList[indexPath.row].name
   }
 }

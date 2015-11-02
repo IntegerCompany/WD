@@ -11,6 +11,7 @@
 		6639064D1BE3565800114E4E /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6639064C1BE3565800114E4E /* Defaults.swift */; };
 		665842961BD921B900C1879C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665842951BD921B900C1879C /* BaseViewController.swift */; };
 		665842981BD929F500C1879C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665842971BD929F500C1879C /* MenuViewController.swift */; };
+		66A12F571BE769EB006CD849 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A12F561BE769EB006CD849 /* SearchViewController.swift */; };
 		66CDC1601BDF7F3E0006C410 /* DishModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDC15F1BDF7F3E0006C410 /* DishModel.swift */; };
 		66CDC1621BDF823C0006C410 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDC1611BDF823C0006C410 /* SwiftyJSON.swift */; };
 		66CDC1661BDFB4830006C410 /* ResponsiveTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDC1651BDFB4830006C410 /* ResponsiveTextFieldViewController.swift */; };
@@ -54,6 +55,7 @@
 		6639064C1BE3565800114E4E /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		665842951BD921B900C1879C /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		665842971BD929F500C1879C /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		66A12F561BE769EB006CD849 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		66CDC15F1BDF7F3E0006C410 /* DishModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DishModel.swift; sourceTree = "<group>"; };
 		66CDC1611BDF823C0006C410 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		66CDC1651BDFB4830006C410 /* ResponsiveTextFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponsiveTextFieldViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				665842951BD921B900C1879C /* BaseViewController.swift */,
 				665842971BD929F500C1879C /* MenuViewController.swift */,
 				66CDC1651BDFB4830006C410 /* ResponsiveTextFieldViewController.swift */,
+				66A12F561BE769EB006CD849 /* SearchViewController.swift */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				665842981BD929F500C1879C /* MenuViewController.swift in Sources */,
 				66CDC1681BDFCFC60006C410 /* RestaurantModel.swift in Sources */,
 				6639064D1BE3565800114E4E /* Defaults.swift in Sources */,
+				66A12F571BE769EB006CD849 /* SearchViewController.swift in Sources */,
 				92E7E8BE1BCBFD8000232106 /* Extensions.swift in Sources */,
 				66CDC1601BDF7F3E0006C410 /* DishModel.swift in Sources */,
 				929BA8201BCFF9D000D039A7 /* Cells.swift in Sources */,

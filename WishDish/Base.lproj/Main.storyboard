@@ -11,7 +11,7 @@
         <!--Wish List View Controller-->
         <scene sceneID="GHx-LD-IMg">
             <objects>
-                <tableViewController id="qjb-NG-gSU" customClass="WishListViewController" customModule="WishDish" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="WishListViewController" id="qjb-NG-gSU" customClass="WishListViewController" customModule="WishDish" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sd9-aw-CBr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -150,6 +150,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="reorderButton" destination="gkb-o7-BSG" id="zdu-iN-Oke"/>
                         <segue destination="dks-2t-tvb" kind="show" id="lFD-7d-cib"/>
                     </connections>
                 </tableViewController>
@@ -384,6 +385,9 @@
                                     <constraint firstAttribute="height" constant="45" id="HX3-OX-tTP"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="footer_wd"/>
+                                <connections>
+                                    <action selector="goToWishLish:" destination="1TW-Hq-mXC" eventType="touchUpInside" id="57U-bd-GTT"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lI9-yi-KXO">
                                 <rect key="frame" x="20" y="107.5" width="560" height="305.5"/>
@@ -505,6 +509,9 @@
                                     <constraint firstAttribute="height" constant="45" id="c2V-8s-tL4"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="footer_wd"/>
+                                <connections>
+                                    <action selector="goToWishList:" destination="5s6-k2-VPY" eventType="touchUpInside" id="YEe-T5-rYt"/>
+                                </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zXi-LS-Rfh">
                                 <rect key="frame" x="182" y="215" width="398" height="209"/>
@@ -773,6 +780,10 @@
                                     <action selector="chooseImage:" destination="ikI-HQ-V8e" eventType="touchUpInside" id="VgZ-9d-2ak"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="moh-8E-ZBX">
+                                <rect key="frame" x="290" y="529" width="20" height="20"/>
+                                <animations/>
+                            </activityIndicatorView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -797,6 +808,7 @@
                             <constraint firstItem="Oqs-dt-e3V" firstAttribute="leading" secondItem="RJ8-sk-bMh" secondAttribute="leading" id="GTa-uo-Klh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Md0-b2-p1m" secondAttribute="trailing" id="GWT-AI-pJX"/>
                             <constraint firstItem="Md0-b2-p1m" firstAttribute="centerX" secondItem="Ajm-8G-V83" secondAttribute="centerX" id="GiY-tR-ipw"/>
+                            <constraint firstItem="moh-8E-ZBX" firstAttribute="centerX" secondItem="Oqs-dt-e3V" secondAttribute="centerX" id="HdK-gS-kVy"/>
                             <constraint firstItem="39Q-S9-hmz" firstAttribute="trailing" secondItem="EFi-JR-pFo" secondAttribute="trailing" id="Hh7-gu-YgN"/>
                             <constraint firstItem="DL2-PV-BtP" firstAttribute="top" secondItem="WyS-Dv-tEm" secondAttribute="bottom" constant="16" id="Hzq-9d-g60"/>
                             <constraint firstItem="Oqs-dt-e3V" firstAttribute="top" secondItem="RJ8-sk-bMh" secondAttribute="bottom" constant="40" id="I6L-Dh-mZx"/>
@@ -806,6 +818,7 @@
                             <constraint firstItem="D1d-zz-5ac" firstAttribute="trailing" secondItem="g25-yi-Hcm" secondAttribute="trailing" id="RTx-kB-h1r"/>
                             <constraint firstItem="Oqs-dt-e3V" firstAttribute="trailing" secondItem="39Q-S9-hmz" secondAttribute="trailing" id="Sgr-AY-BP8"/>
                             <constraint firstItem="Oqs-dt-e3V" firstAttribute="top" secondItem="RJ8-sk-bMh" secondAttribute="bottom" constant="19" id="ShD-Wr-bhL"/>
+                            <constraint firstItem="moh-8E-ZBX" firstAttribute="bottom" secondItem="Oqs-dt-e3V" secondAttribute="bottom" id="TRe-cC-jyP"/>
                             <constraint firstItem="39Q-S9-hmz" firstAttribute="trailing" secondItem="Md0-b2-p1m" secondAttribute="trailing" id="VO6-7C-cSm"/>
                             <constraint firstItem="39Q-S9-hmz" firstAttribute="leading" secondItem="EFi-JR-pFo" secondAttribute="leading" id="VYA-JN-Wao"/>
                             <constraint firstItem="D1d-zz-5ac" firstAttribute="leading" secondItem="g25-yi-Hcm" secondAttribute="leading" id="Yms-Uq-KAU"/>
@@ -883,8 +896,10 @@
                         <outlet property="image" destination="EFi-JR-pFo" id="PCz-0a-MTu"/>
                         <outlet property="instagram" destination="RJ8-sk-bMh" id="UXw-14-A8D"/>
                         <outlet property="name" destination="Md0-b2-p1m" id="roJ-uE-jSn"/>
+                        <outlet property="progressBar" destination="moh-8E-ZBX" id="XFx-WK-w2O"/>
                         <outlet property="restaurant" destination="g25-yi-Hcm" id="PhK-IK-38x"/>
                         <outlet property="tableView" destination="D1d-zz-5ac" id="VDA-lQ-EkS"/>
+                        <outlet property="uploadButton" destination="Oqs-dt-e3V" id="ZTg-3J-9VY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mIo-PF-Hd9" userLabel="First Responder" sceneMemberID="firstResponder"/>

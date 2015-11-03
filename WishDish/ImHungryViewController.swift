@@ -24,6 +24,11 @@ class ImHungryViewController: BaseViewController {
     initSwipeGestures()
   }
   
+  @IBAction func goToWishLish(sender: UIButton) {
+    let wishLish = self.storyboard?.instantiateViewControllerWithIdentifier("WishListViewController") as! WishListViewController
+       self.navigationController?.pushViewController(wishLish, animated: true)
+  }
+  
   @IBAction func dislike(sender: UIButton) {
     if(dishList.count != 0){
       counter++

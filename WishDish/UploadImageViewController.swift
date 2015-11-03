@@ -19,6 +19,8 @@ class UploadImageViewController: BaseViewController {
   @IBOutlet weak var instagram: UITextField!
   @IBOutlet weak var image: UIButton!
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var progressBar: UIActivityIndicatorView!
+  @IBOutlet weak var uploadButton: UIButton!
   
   @IBOutlet weak var imageView: UIImageView!
   var restaurantList = [Restaurant]()
@@ -42,40 +44,61 @@ class UploadImageViewController: BaseViewController {
   }
   
   @IBAction func uploadImage(sender: UIButton) {
-    if self.dishDescription.text?.characters.count == 0{
-      print("No dish description")
+    
+    guard let _ = self.image.backgroundImageForState(.Normal) else{
+      showAlertMessage("Please, pick image for the dish",handler: nil)
       return
     }
-    if self.restaurant.text?.characters.count == 0{
-      print("No restaurant")
-      return
-    }
+    
     if self.name.text?.characters.count == 0{
-      print("No name")
+      showAlertMessage("Please, fill in dish name",handler: nil)
       return
     }
+    
+    if self.dishDescription.text?.characters.count == 0{
+      showAlertMessage("Please, fill in dish description",handler: nil)
+      return
+    }
+    
+    if self.restaurant.text?.characters.count == 0{
+      showAlertMessage("Please, choose restaurant from the list",handler: nil)
+      return
+    }
+    
     if !self.isRestaurantSelected{
-      print("No restaurant selected")
+      showAlertMessage("Please, choose restaurant from the list",handler: nil)
       return
     }
+    showProgress(true)
+    
     let compressedImage = compressForUploadImage(self.image.backgroundImageForState(.Normal)!, scale: 0.5)
     let data = UIImageJPEGRepresentation(compressedImage, 0.5)
     let encodedImage = data?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
     
     let parameters = [
-      "restaurant" : 1,
-      "dish" : [
-        "description" : "full shit",
-        "name" : "testDishFromUser",
-        "photo" : encodedImage!,
-        "owner" : FBSDKAccessToken.currentAccessToken().userID,
-        "url_instagram" : self.instagram.text!
-      ]
+      "restaurant_id" : self.restaurantId,
+      "description" : self.dishDescription.text!,
+      "name" : self.name.text!,
+      "photo" : encodedImage!,
+      "user_id" : Defaults.getUserId(),
+      "url_instagram" : self.instagram.text!
     ]
-    Alamofire.request(.POST, "http://wdl.webdecision.com.ua/api/dishes", parameters: parameters, headers: self.headers).responseJSON {
+    
+    Alamofire.request(.POST, "http://wdl.webdecision.com.ua/api/dish", parameters: parameters as? [String : AnyObject], headers: self.headers).responseJSON {
       response in
+      print("Response : \(response.result.value)")
+      self.showProgress(false)
+      self.showAlertMessage("Dish uploaded succesfully"){
+        action in
+        self.navigationController?.popViewControllerAnimated(true)
+      }
       print(response)
     }
+  }
+  
+  func showProgress(show : Bool){
+    self.uploadButton.hidden = show
+    self.progressBar.hidden = !show
   }
   
   func setDelegates(){
@@ -239,12 +262,26 @@ extension UploadImageViewController : UITableViewDataSource, UITableViewDelegate
       self.restaurant.endEditing(true)
       self.isRestaurantSelected = true
     }else{
-      showAlertController()
+      if isLocationAccessGranted{
+        showRestaurantBuilder()
+      }else{
+        
+      }
       self.restaurant.endEditing(true)
     }
   }
   
-  func showAlertController(){
+  func showAlertMessage(message : String, handler : ((UIAlertAction) -> Void)?){
+    let alertController = UIAlertController(title: "Upload dish", message: message, preferredStyle: .Alert)
+    let okAction = UIAlertAction(title: "OK", style: .Default, handler : handler)
+    alertController.addAction(okAction)
+    self.presentViewController(alertController, animated: true) {
+      // ...
+    }
+    
+  }
+  
+  func showRestaurantBuilder(){
     if isLocationAccessGranted{
       let alertController = UIAlertController(title: "Add new restaurant", message: "Please, fill in the information about the restaurant", preferredStyle: .Alert)
       

@@ -36,6 +36,11 @@ class SearchForRestaurantController: BaseViewController {
     
   }
   
+  @IBAction func goToWishList(sender: UIButton) {
+    let wishLish = self.storyboard?.instantiateViewControllerWithIdentifier("WishListViewController") as! WishListViewController
+    self.navigationController?.pushViewController(wishLish, animated: true)
+  }
+  
   @IBAction func book(sender: UIButton) {
     let parameters = ["dish_id": "\(self.dishId)",
     "user_id":"\(Defaults.getUserId())"]

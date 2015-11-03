@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 
 class WishListViewController: UITableViewController ,UIPopoverPresentationControllerDelegate{
+  @IBOutlet weak var reorderButton: UIButton!
   var popoverContent : MenuViewController!
   var dishes = [Dish]()
   var dishIdList = [Int]()
@@ -48,7 +49,7 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
     return cell
   }
   
-  override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {    
+  override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
     let itemToMove = dishes[fromIndexPath.row]
     dishes.removeAtIndex(fromIndexPath.row)
     dishes.insert(itemToMove, atIndex: toIndexPath.row)
@@ -92,10 +93,14 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
   }
   
   @IBAction func reorder(sender: UIButton) {
-    if self.tableView.editing {
-      self.tableView.setEditing(false, animated: true)
-    }else{
-      self.tableView.setEditing(true, animated: true)
+    if self.dishes.count != 0{
+      if self.tableView.editing {
+        self.reorderButton.setTitle("Rerder", forState: .Normal)
+        self.tableView.setEditing(false, animated: true)
+      }else{
+        self.reorderButton.setTitle("Done", forState: .Normal)
+        self.tableView.setEditing(true, animated: true)
+      }      
     }
   }
   

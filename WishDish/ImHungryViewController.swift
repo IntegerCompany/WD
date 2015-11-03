@@ -75,8 +75,8 @@ class ImHungryViewController: BaseViewController {
       let headers = [
       "Hash-Key": "34d1a24d7a47f12b38d49bedbe2ffead"
     ]
-    
-    Alamofire.request(.GET, "http://wdl.webdecision.com.ua/api/dishes/\(Defaults.getUserId())", headers:headers)
+    print("http://wdl.webdecision.com.ua/api/dish/\(Defaults.getUserId())")
+    Alamofire.request(.GET, "http://wdl.webdecision.com.ua/api/dish/\(Defaults.getUserId())", headers:headers)
       .responseJSON{ response in
         self.wishDishIdList.removeAll()
         self.dishList.removeAll()

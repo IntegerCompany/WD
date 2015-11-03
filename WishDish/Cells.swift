@@ -9,8 +9,12 @@
 import UIKit
 
 class SearchDishCell : UITableViewCell {
-    
     @IBOutlet weak var dishImage: UIImageView!
+}
+
+class SearchCell : UITableViewCell{
+  
+  @IBOutlet weak var name: UILabel!
 }
 
 class WishDishlistCell : UITableViewCell{

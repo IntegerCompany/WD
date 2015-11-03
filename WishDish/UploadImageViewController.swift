@@ -352,7 +352,8 @@ extension UploadImageViewController : UITextFieldDelegate{
   }
   
   func getRestaurantsFromApi(string : String){
-    Alamofire.request(.GET, "http://wdl.webdecision.com.ua/api/restaurants/\(string)",  headers: self.headers).responseJSON {
+    let url = "http://wdl.webdecision.com.ua/api/restaurants/\(string)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+    Alamofire.request(.GET, url,  headers: self.headers).responseJSON {
       response in
       self.restaurantList.removeAll()
       let json = JSON(response.result.value!)

@@ -11,6 +11,7 @@
 		6639064D1BE3565800114E4E /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6639064C1BE3565800114E4E /* Defaults.swift */; };
 		665842961BD921B900C1879C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665842951BD921B900C1879C /* BaseViewController.swift */; };
 		665842981BD929F500C1879C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665842971BD929F500C1879C /* MenuViewController.swift */; };
+		66995F611BE8B6350016CC6F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66995F601BE8B6350016CC6F /* Reachability.swift */; };
 		66A12F571BE769EB006CD849 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A12F561BE769EB006CD849 /* SearchViewController.swift */; };
 		66CDC1601BDF7F3E0006C410 /* DishModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDC15F1BDF7F3E0006C410 /* DishModel.swift */; };
 		66CDC1621BDF823C0006C410 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDC1611BDF823C0006C410 /* SwiftyJSON.swift */; };
@@ -55,6 +56,7 @@
 		6639064C1BE3565800114E4E /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		665842951BD921B900C1879C /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		665842971BD929F500C1879C /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		66995F601BE8B6350016CC6F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		66A12F561BE769EB006CD849 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		66CDC15F1BDF7F3E0006C410 /* DishModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DishModel.swift; sourceTree = "<group>"; };
 		66CDC1611BDF823C0006C410 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -128,6 +130,15 @@
 			name = Defaults;
 			sourceTree = "<group>";
 		};
+		66995F5F1BE8B61F0016CC6F /* HelperClasses */ = {
+			isa = PBXGroup;
+			children = (
+				66CDC1611BDF823C0006C410 /* SwiftyJSON.swift */,
+				66995F601BE8B6350016CC6F /* Reachability.swift */,
+			);
+			name = HelperClasses;
+			sourceTree = "<group>";
+		};
 		66CDC15E1BDF7F220006C410 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,8 +181,8 @@
 		92E7E88C1BCBF73100232106 /* WishDish */ = {
 			isa = PBXGroup;
 			children = (
+				66995F5F1BE8B61F0016CC6F /* HelperClasses */,
 				6639064B1BE3563F00114E4E /* Defaults */,
-				66CDC1611BDF823C0006C410 /* SwiftyJSON.swift */,
 				66CDC15E1BDF7F220006C410 /* Models */,
 				929BA81A1BCF9C9500D039A7 /* SocialHooks */,
 				92E7E8BB1BCBF7C100232106 /* VC */,
@@ -420,6 +431,7 @@
 			files = (
 				92E7E8901BCBF73100232106 /* ViewController.swift in Sources */,
 				92E7E8C81BCC030E00232106 /* UploadImageViewController.swift in Sources */,
+				66995F611BE8B6350016CC6F /* Reachability.swift in Sources */,
 				92E7E8C61BCC02A200232106 /* WishListViewController.swift in Sources */,
 				929BA81C1BCF9CC100D039A7 /* SocialNetwork.swift in Sources */,
 				665842961BD921B900C1879C /* BaseViewController.swift in Sources */,

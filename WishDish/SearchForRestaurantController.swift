@@ -27,28 +27,103 @@ class SearchForRestaurantController: BaseViewController {
   var restaurantId = 0;
   var dishId = 0;
   var dishList = [Dish]()
+  var wishDishIdList = [Int]()
+  var counter = 0{
+    didSet{
+      setInfo()
+    }
+  }
+  var isCustomSegue = false
   
-    let regionRadius: CLLocationDistance = 1000
+  let regionRadius: CLLocationDistance = 1000
   
   override func viewDidLoad() {
     super.viewDidLoad()
     getInfoFromApi()
-    
+  }
+  override func willMoveToParentViewController(parent: UIViewController?) {
+    print("Move to \(parent?.nibName)")
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    if !self.isCustomSegue{
+      let parent = try self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 1] as! ImHungryViewController
+      parent.wishDishIdList = self.wishDishIdList
+      parent.setInfo()
+    }
+  }
+  
+  override func takePhoto(sender: UIButton) {
+    self.isCustomSegue = true
+    super.takePhoto(sender)
+  }
+  
+  @IBAction func nextDish(sender: AnyObject) {
+    if counter < dishList.count-1 {
+      counter++
+    }
+  }
+  
+  @IBAction func addToWishList(sender: AnyObject) {
+    if !self.wishDishIdList.contains(dishId){
+      self.wishDishIdList.append(dishId)
+      setInfo()
+      print("Adding to wishlist : \(dishId)")
+      let parameters = ["new" : [
+        "user_id" : "\(Defaults.getUserId())",
+        "dishes" : "\(dishId)"
+        ]
+      ]
+      Alamofire.request(.POST, "http://wdl.webdecision.com.ua/api/likes", parameters: parameters, headers: self.headers).responseJSON{
+        response in
+        print(response.result.value)
+      }
+    }else{
+      self.wishDishIdList = wishDishIdList.filter{$0 != dishId}
+      setInfo()
+      let parameters = ["update" : [
+        "user_id" : "\(Defaults.getUserId())",
+        "dishes" : wishDishIdList
+        ]
+      ]
+      print("Removing from wishlist : \(JSON(parameters))")
+      Alamofire.request(.POST, "http://wdl.webdecision.com.ua/api/likes", parameters: parameters, headers: self.headers).responseJSON{
+        response in
+        print(response.result.value)
+      }
+    }
   }
   
   @IBAction func goToWishList(sender: UIButton) {
+    self.isCustomSegue = true
     let wishLish = self.storyboard?.instantiateViewControllerWithIdentifier("WishListViewController") as! WishListViewController
     self.navigationController?.pushViewController(wishLish, animated: true)
   }
   
   @IBAction func book(sender: UIButton) {
+    //TODO: booking
     let parameters = ["dish_id": "\(self.dishId)",
-    "user_id":"\(Defaults.getUserId())"]
+      "user_id":"\(Defaults.getUserId())"]
     print(parameters)
     Alamofire.request(.POST,"http://wdl.webdecision.com.ua/api/book",headers:self.headers,parameters:parameters).responseJSON{
       response in
       print(response.result.value!)
     }
+  }
+  
+  func setInfo(){
+    self.dishName.text = self.dishList[counter].name
+    self.dishId = dishList[counter].id
+    if self.wishDishIdList.contains(dishList[counter].id){
+      self.likeDishButton.setBackgroundImage(UIImage(named: "instagram_wd"), forState: .Normal)
+    }else{
+      self.likeDishButton.setBackgroundImage(UIImage(named: "wd_love_wd"), forState: .Normal)
+    }
+    if(self.counter != 0){
+      let indexPath = NSIndexPath(forRow: self.counter, inSection: 0)
+      tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+    }
+    
   }
   
   func centerMapOnLocation(location: CLLocation) {
@@ -76,6 +151,8 @@ class SearchForRestaurantController: BaseViewController {
         }
         self.dishList.append(dish)
       }
+      self.dishId = self.dishList[0].id
+      self.setInfo()
       self.restaurantName.text = json["restaurant"]["name"].string!
       self.address.text = json["restaurant"]["address"].string!
       self.website.text = json["restaurant"]["url_site"].string!
@@ -105,7 +182,6 @@ extension SearchForRestaurantController : UITableViewDataSource {
 }
 extension SearchForRestaurantController : UITableViewDelegate {
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    self.dishId = dishList[indexPath.row].id
-    self.dishName.text = dishList[indexPath.row].name
+    self.counter = indexPath.row
   }
 }

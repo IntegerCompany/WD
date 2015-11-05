@@ -19,7 +19,14 @@ class ResponsiveTextFieldViewController : UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      switch UIDevice.currentDevice().userInterfaceIdiom {
+      case .Phone:
+        self.kPreferredTextFieldToKeyboardOffset = 100.0
+      case .Pad:
+        self.kPreferredTextFieldToKeyboardOffset = 300.0
+      default: self.kPreferredTextFieldToKeyboardOffset = 100.0
+      }
+
         for subview in self.view.subviews
         {
             if (subview.isKindOfClass(UITextField))

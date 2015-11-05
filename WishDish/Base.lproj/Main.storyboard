@@ -26,6 +26,14 @@
                                 <action selector="reorder:" destination="qjb-NG-gSU" eventType="touchUpInside" id="vXl-ef-q85"/>
                             </connections>
                         </button>
+                        <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your wish list is empty" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xdp-1c-poY">
+                            <rect key="frame" x="0.0" y="236" width="600" height="365"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="WishDish" selectionStyle="default" indentationWidth="10" reuseIdentifier="WishDish" rowHeight="100" id="faU-ay-wrK" customClass="WishDishlistCell" customModule="WishDish" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="136" width="600" height="100"/>
@@ -150,6 +158,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="emptyView" destination="Xdp-1c-poY" id="5ZQ-vJ-vZf"/>
                         <outlet property="reorderButton" destination="gkb-o7-BSG" id="zdu-iN-Oke"/>
                         <segue destination="dks-2t-tvb" kind="show" id="lFD-7d-cib"/>
                     </connections>
@@ -472,6 +481,9 @@
                                     </constraint>
                                 </constraints>
                                 <state key="normal" backgroundImage="back_wd"/>
+                                <connections>
+                                    <action selector="nextDish:" destination="5s6-k2-VPY" eventType="touchUpInside" id="oST-7e-Rgr"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJj-Xc-4Bc">
                                 <rect key="frame" x="480" y="432" width="100" height="100"/>
@@ -501,6 +513,9 @@
                                     </constraint>
                                 </constraints>
                                 <state key="normal" backgroundImage="wd_love_wd"/>
+                                <connections>
+                                    <action selector="addToWishList:" destination="5s6-k2-VPY" eventType="touchUpInside" id="pqv-N7-pWq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Of1-h7-lqD">
                                 <rect key="frame" x="20" y="547" width="560" height="45"/>
@@ -688,7 +703,7 @@
         <!--Upload Image View Controller-->
         <scene sceneID="5QH-xC-t2G">
             <objects>
-                <viewController id="ikI-HQ-V8e" customClass="UploadImageViewController" customModule="WishDish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UploadImageViewController" id="ikI-HQ-V8e" customClass="UploadImageViewController" customModule="WishDish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WyS-Dv-tEm"/>
                         <viewControllerLayoutGuide type="bottom" id="T1Q-fs-qTi"/>

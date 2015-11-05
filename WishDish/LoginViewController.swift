@@ -59,7 +59,8 @@ extension LoginViewController : FBSDKLoginButtonDelegate {
                 response in
                let json = JSON(response.result.value!)
                 print(response.result.value!)
-                Defaults.setUserId(Int(json["user_id"].string!)!)
+                print(json["user_id"].intValue)
+                Defaults.setUserId(json["user_id"].intValue)
               }
           }
           

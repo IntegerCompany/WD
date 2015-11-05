@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import FBSDKCoreKit
+import FBSDKShareKit
 import Alamofire
 
 class UploadImageViewController: BaseViewController {
@@ -36,6 +37,9 @@ class UploadImageViewController: BaseViewController {
     super.viewDidLoad()
     setDelegates()
     initLocationManager()
+  }
+  
+  override func takePhoto(sender: UIButton) {    
   }
   
   
@@ -260,6 +264,7 @@ extension UploadImageViewController : UITableViewDataSource, UITableViewDelegate
     if self.restaurantList.count != 0 {
       self.restaurant.text = self.restaurantList[indexPath.row].name
       self.restaurant.endEditing(true)
+      self.restaurantId = self.restaurantList[indexPath.row].id      
       self.isRestaurantSelected = true
     }else{
       if isLocationAccessGranted{
@@ -310,13 +315,13 @@ extension UploadImageViewController : UITableViewDataSource, UITableViewDelegate
       let okAction = UIAlertAction(title: "OK", style: .Default) { (action) in
         let parameters = ["restaurant" : [
           "name" : "\((alertController.textFields![0].text)!)",
-          "address" : "Shitty St.",
+          "address" : "\(self.street)",
           "coordinates" : "\(self.coordinates.latitude),\(self.coordinates.longitude)",
           "url_site" : "\((alertController.textFields![1].text)!)",
           "url_booking" : "\((alertController.textFields![2].text)!)"
           ]
         ]
-        Alamofire.request(.POST, "http://wdl.webdecision.com.ua/api/restaurants", parameters: parameters, headers: self.headers).response
+        Alamofire.request(.POST, "http://wdl.webdecision.com.ua/api/restaurant", parameters: parameters, headers: self.headers).response
           {response in
             self.restaurantId = Int(String(NSString(data: response.2!, encoding:NSUTF8StringEncoding)!))!
             self.restaurant.text = (alertController.textFields![0].text)!

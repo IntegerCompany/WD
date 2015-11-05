@@ -40,6 +40,7 @@ class ImHungryViewController: BaseViewController {
     let restaurantDetail = self.storyboard?.instantiateViewControllerWithIdentifier("SearchForRestaurantController") as! SearchForRestaurantController
     restaurantDetail.restaurantId = self.dishList[counter].restaurantId
     restaurantDetail.dishId = self.dishList[counter].id
+    restaurantDetail.wishDishIdList = self.wishDishIdList
     self.navigationController?.pushViewController(restaurantDetail, animated: true)
   }
   

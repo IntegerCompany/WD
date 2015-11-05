@@ -11,6 +11,7 @@ import Alamofire
 
 class WishListViewController: UITableViewController ,UIPopoverPresentationControllerDelegate{
   @IBOutlet weak var reorderButton: UIButton!
+  @IBOutlet weak var emptyView: UILabel!
   var popoverContent : MenuViewController!
   var dishes = [Dish]()
   var dishIdList = [Int]()
@@ -22,7 +23,7 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
     super.viewDidLoad()
     initBarMenus()
     getDishesFromApi()
-    popoverContent = self.storyboard?.instantiateViewControllerWithIdentifier("MenuViewController") as? MenuViewController
+    popoverContent = self.storyboard?.instantiateViewControllerWithIdentifier("MenuViewController") as? MenuViewController    
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,12 +96,12 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
   @IBAction func reorder(sender: UIButton) {
     if self.dishes.count != 0{
       if self.tableView.editing {
-        self.reorderButton.setTitle("Rerder", forState: .Normal)
+        self.reorderButton.setTitle("Reorder", forState: .Normal)
         self.tableView.setEditing(false, animated: true)
       }else{
         self.reorderButton.setTitle("Done", forState: .Normal)
         self.tableView.setEditing(true, animated: true)
-      }      
+      }
     }
   }
   
@@ -111,7 +112,7 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
     let btn1 = UIButton(frame: CGRectMake(0,0,30, 30))
     btn1.setImage(UIImage(named: "back_wd"), forState: UIControlState.Normal)
     btn1.tag=101
-    btn1.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
+    btn1.addTarget(self, action: "takePhoto:", forControlEvents: UIControlEvents.TouchUpInside)
     rightView.addSubview(btn1)
     
     let btn2 = UIButton(frame: CGRectMake(40,0,30, 30))
@@ -132,7 +133,7 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
     nav?.delegate = self
     nav?.sourceView = self.view
     let xPosition = self.view.frame.width
-    let yPosition = self.view.frame.minY + 52
+    let yPosition = self.view.frame.minY
     nav?.permittedArrowDirections = UIPopoverArrowDirection.Up
     nav?.sourceRect = CGRectMake(xPosition, yPosition , 0, 0)
     self.navigationController?.presentViewController(popoverContent!, animated: true, completion: nil)
@@ -154,6 +155,7 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
         self.dishes.append(dish)
         self.dishIdList.append(dish.id)
         self.tableView.reloadData()
+        self.emptyView.hidden = true
       }
     }
   }
@@ -162,5 +164,10 @@ class WishListViewController: UITableViewController ,UIPopoverPresentationContro
 extension WishListViewController  : MenuCallBackExtension {
   func menuFromMenu(sender : UIButton){
     self.showMenu()
+  }
+  
+  func takePhoto(sender : UIButton){
+    let uploadImage = self.storyboard?.instantiateViewControllerWithIdentifier("UploadImageViewController") as! UploadImageViewController
+    self.navigationController?.pushViewController(uploadImage, animated: true)
   }
 }

@@ -24,52 +24,65 @@ class SearchViewController : UIViewController{
     tableView.dataSource = self
     searchBar.delegate = self
     Alamofire.request(.GET, "http://wdl.webdecision.com.ua/api/screen",headers:self.headers)
+    getRestaurantsFromApi("")
+    getDishesFromApi("")
   }
   @IBAction func segmentChanged(sender: UISegmentedControl) {
     self.tableView.reloadData()
   }
+  
+  func getDishesFromApi(name : String){
+    let url = "http://wdl.webdecision.com.ua/api/dishes/\(name)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+    Alamofire.request(.GET, url ,headers:self.headers).responseJSON{response in
+      self.dishList.removeAll()
+      let data = JSON(response.result.value!)
+      for (_,subJson):(String, JSON) in data {
+        let dish = Dish()
+        dish.description = subJson["description"].string!
+        dish.restaurantId = Int(subJson["restaurant_id"].string!)!
+        dish.id = Int(subJson["id"].string!)!
+        dish.instagramUrl = subJson["url_instagram"].string!
+        dish.photoUrl = subJson["photo"].string!
+        dish.name = subJson["name"].string!
+        self.dishList.append(dish)
+      }
+      self.tableView.reloadData()
+    }
+  }
+  
+  func getRestaurantsFromApi(name : String){
+    let url = "http://wdl.webdecision.com.ua/api/restaurants/\(name)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+    
+    Alamofire.request(.GET, url ,headers:self.headers).responseJSON{response in
+      self.restaurantList.removeAll()
+      let data = JSON(response.result.value!)
+      for (_,subJson):(String, JSON) in data {
+        let restaurant = Restaurant()
+        restaurant.adress = subJson["address"].string!
+        restaurant.id = Int(subJson["id"].string!)!
+        restaurant.name = subJson["name"].string!
+        restaurant.bookingUrl = subJson["url_booking"].string!
+        restaurant.siteUrl = subJson["url_site"].string!
+        let coordinateString = subJson["coordinates"].string!
+        let coordinatesArr = coordinateString.characters.split{$0 == ","}.map(String.init)
+        restaurant.latitude = Double(coordinatesArr[0])!
+        restaurant.longitude = Double(coordinatesArr[1])!
+        self.restaurantList.append(restaurant)
+      }
+      self.tableView.reloadData()
+    }
+
+  }
+  
+  
 }
 
 extension SearchViewController : UISearchBarDelegate{
   func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
     if(segmentControl.selectedSegmentIndex == 0){
-      let url = "http://wdl.webdecision.com.ua/api/dishes/\(searchText)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-      Alamofire.request(.GET, url ,headers:self.headers).responseJSON{response in
-        self.dishList.removeAll()
-        let data = JSON(response.result.value!)
-        for (_,subJson):(String, JSON) in data {
-          let dish = Dish()
-          dish.description = subJson["description"].string!
-          dish.restaurantId = Int(subJson["restaurant_id"].string!)!
-          dish.id = Int(subJson["id"].string!)!
-          dish.instagramUrl = subJson["url_instagram"].string!
-          dish.photoUrl = subJson["photo"].string!
-          dish.name = subJson["name"].string!
-          self.dishList.append(dish)
-        }
-        self.tableView.reloadData()
-      }
+      getDishesFromApi(searchText)
     }else{
-      let url = "http://wdl.webdecision.com.ua/api/restaurants/\(searchText)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-
-      Alamofire.request(.GET, url ,headers:self.headers).responseJSON{response in
-        self.restaurantList.removeAll()
-        let data = JSON(response.result.value!)
-        for (_,subJson):(String, JSON) in data {
-          let restaurant = Restaurant()
-          restaurant.adress = subJson["address"].string!
-          restaurant.id = Int(subJson["id"].string!)!
-          restaurant.name = subJson["name"].string!
-          restaurant.bookingUrl = subJson["url_booking"].string!
-          restaurant.siteUrl = subJson["url_site"].string!
-          let coordinateString = subJson["coordinates"].string!
-          let coordinatesArr = coordinateString.characters.split{$0 == ","}.map(String.init)
-          restaurant.latitude = Double(coordinatesArr[0])!
-          restaurant.longitude = Double(coordinatesArr[1])!
-          self.restaurantList.append(restaurant)
-        }
-        self.tableView.reloadData()
-      }
+      getRestaurantsFromApi(searchText)
     }
   }
   

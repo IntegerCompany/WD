@@ -26,7 +26,7 @@ class ImHungryViewController: BaseViewController {
   
   @IBAction func goToWishLish(sender: UIButton) {
     let wishLish = self.storyboard?.instantiateViewControllerWithIdentifier("WishListViewController") as! WishListViewController
-       self.navigationController?.pushViewController(wishLish, animated: true)
+    self.navigationController?.pushViewController(wishLish, animated: true)
   }
   
   @IBAction func dislike(sender: UIButton) {
@@ -78,7 +78,7 @@ class ImHungryViewController: BaseViewController {
   }
   
   func getDishes(){
-      let headers = [
+    let headers = [
       "Hash-Key": "34d1a24d7a47f12b38d49bedbe2ffead"
     ]
     print("http://wdl.webdecision.com.ua/api/dish/\(Defaults.getUserId())")
@@ -103,7 +103,9 @@ class ImHungryViewController: BaseViewController {
           self.dishList.append(dish)
         }
         self.counter = 0
-        self.setInfo()
+        if self.dishList.count != 0{
+          self.setInfo()
+        }
     }
   }
   

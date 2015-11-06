@@ -39,7 +39,7 @@ class UploadImageViewController: BaseViewController {
     initLocationManager()
   }
   
-  override func takePhoto(sender: UIButton) {    
+  override func takePhoto(sender: UIButton) {
   }
   
   

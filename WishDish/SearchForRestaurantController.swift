@@ -67,7 +67,7 @@ class SearchForRestaurantController: BaseViewController {
   
     @IBAction func shareToFacebook(sender: UIButton) {
         let photo = FBSDKSharePhoto()
-        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SearchDishCell
+        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: counter, inSection: 0)) as! SearchDishCell
         photo.image = cell.dishImage.image!
         photo.userGenerated = true
         let content = FBSDKSharePhotoContent()
@@ -122,6 +122,8 @@ class SearchForRestaurantController: BaseViewController {
   
   @IBAction func book(sender: UIButton) {
     //TODO: booking
+//    let url = NSURL(string: "https://google.com")!
+//    UIApplication.sharedApplication().openURL(url)
     let parameters = ["dish_id": "\(self.dishId)",
       "user_id":"\(Defaults.getUserId())"]
     print(parameters)
@@ -150,6 +152,11 @@ class SearchForRestaurantController: BaseViewController {
     let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
       regionRadius * 2.0, regionRadius * 2.0)
     wdMap.setRegion(coordinateRegion, animated: true)
+    
+    let annotation = MKPointAnnotation()
+    annotation.coordinate = location.coordinate
+    annotation.title = "\(self.restaurantName.text!)"
+    wdMap.addAnnotation(annotation)
   }
   
   func getInfoFromApi(){

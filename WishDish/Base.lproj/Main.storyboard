@@ -410,6 +410,9 @@
                                     <constraint firstAttribute="height" constant="54" id="q79-yw-e5M"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="fb_wd"/>
+                                <connections>
+                                    <action selector="shareToFacebook:" destination="1TW-Hq-mXC" eventType="touchUpInside" id="8zC-EP-Rhw"/>
+                                </connections>
                             </button>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ggm-w3-4WA">
                                 <rect key="frame" x="526" y="107" width="54" height="54"/>
@@ -419,6 +422,9 @@
                                     <constraint firstAttribute="width" constant="54" id="YDa-Rf-yG1"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="instagram_wd"/>
+                                <connections>
+                                    <action selector="shareToInstagram:" destination="1TW-Hq-mXC" eventType="touchUpInside" id="ZWc-o0-3U2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -598,6 +604,9 @@
                                     <constraint firstAttribute="width" constant="54" id="tSN-ER-a4H"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="fb_wd"/>
+                                <connections>
+                                    <action selector="shareToFacebook:" destination="5s6-k2-VPY" eventType="touchUpInside" id="JQz-Db-6cL"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Kw-bM-vwO">
                                 <rect key="frame" x="20" y="186" width="560" height="21"/>

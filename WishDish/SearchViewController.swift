@@ -9,17 +9,16 @@
 import Foundation
 import Alamofire
 
-class SearchViewController : UIViewController{
+class SearchViewController : BaseViewController{
   @IBOutlet weak var segmentControl: UISegmentedControl!
   @IBOutlet weak var searchBar: UISearchBar!
   @IBOutlet weak var tableView: UITableView!
-  let headers = [
-    "Hash-Key": "34d1a24d7a47f12b38d49bedbe2ffead"
-  ]
+ 
   var dishList = [Dish]()
   var restaurantList = [Restaurant]()
   
   override func viewDidLoad() {
+    super.viewDidLoad()
     tableView.delegate = self
     tableView.dataSource = self
     searchBar.delegate = self

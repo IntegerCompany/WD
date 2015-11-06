@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import FBSDKShareKit
 
 class ImHungryViewController: BaseViewController {
   
@@ -17,13 +18,34 @@ class ImHungryViewController: BaseViewController {
   @IBOutlet weak var image: UIImageView!
   @IBOutlet weak var name: UILabel!
   @IBOutlet weak var likeButton: UIButton!
-  
-  override func viewDidLoad() {
+   
+    override func viewDidLoad() {
     super.viewDidLoad()
     getDishes()
     initSwipeGestures()
   }
+    
+    override func keyboardWillShow(notification: NSNotification) {
+        
+    }
+    override func keyboardWillHide(notification: NSNotification) {
+        
+    }
+    @IBAction func shareToFacebook(sender: UIButton) {
+        let photo = FBSDKSharePhoto()
+        photo.image = image.image!
+        photo.userGenerated = true
+        let content = FBSDKSharePhotoContent()
+        content.photos = [photo]
+        let dialog = FBSDKShareDialog()
+        dialog.fromViewController = self
+        dialog.shareContent = content
+        dialog.mode = .ShareSheet
+        dialog.show()
+    }
   
+    @IBAction func shareToInstagram(sender: UIButton) {
+    }
   @IBAction func goToWishLish(sender: UIButton) {
     let wishLish = self.storyboard?.instantiateViewControllerWithIdentifier("WishListViewController") as! WishListViewController
     self.navigationController?.pushViewController(wishLish, animated: true)

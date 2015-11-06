@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Alamofire
+import FBSDKShareKit
 
 class SearchForRestaurantController: BaseViewController {
   
@@ -57,7 +58,26 @@ class SearchForRestaurantController: BaseViewController {
     self.isCustomSegue = true
     super.takePhoto(sender)
   }
+    
+    override func keyboardWillHide(notification: NSNotification) {
+    }
+    
+    override func keyboardWillShow(notification: NSNotification) {        
+    }
   
+    @IBAction func shareToFacebook(sender: UIButton) {
+        let photo = FBSDKSharePhoto()
+        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SearchDishCell
+        photo.image = cell.dishImage.image!
+        photo.userGenerated = true
+        let content = FBSDKSharePhotoContent()
+        content.photos = [photo]
+        let dialog = FBSDKShareDialog()
+        dialog.fromViewController = self
+        dialog.shareContent = content
+        dialog.mode = .ShareSheet
+        dialog.show()
+    }
   @IBAction func nextDish(sender: AnyObject) {
     if counter < dishList.count-1 {
       counter++

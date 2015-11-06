@@ -38,12 +38,14 @@ class ViewController: BaseViewController, UIDocumentInteractionControllerDelegat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func keyboardWillHide(notification: NSNotification) {}
+    override func keyboardWillShow(notification: NSNotification) {}
     @IBAction func facebookButton(sender: UIButton) {
-        let content: FBSDKShareLinkContent = FBSDKShareLinkContent()
+        let content = FBSDKShareLinkContent()
         content.contentURL = NSURL(string: "https://itunes.apple.com/ru/app/foursquare/id306934924?mt=8")
-        content.contentTitle = "Wish list"
+        content.contentTitle = "Wish dish"
         content.contentDescription = "Best app"
-        //        content.imageURL = UIImageView
         SocialNetwork.shareWIthFacebookAppUrl(self,content: content)
     }
     @IBAction func instagramButton(sender: UIButton) {

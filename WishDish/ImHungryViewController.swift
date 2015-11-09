@@ -25,12 +25,8 @@ class ImHungryViewController: BaseViewController {
     initSwipeGestures()
   }
     
-    override func keyboardWillShow(notification: NSNotification) {
-        
-    }
-    override func keyboardWillHide(notification: NSNotification) {
-        
-    }
+    override func keyboardWillShow(notification: NSNotification) {}
+    override func keyboardWillHide(notification: NSNotification) {}
     @IBAction func shareToFacebook(sender: UIButton) {
         let photo = FBSDKSharePhoto()
         photo.image = image.image!

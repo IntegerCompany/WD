@@ -26,6 +26,10 @@ class SearchViewController : BaseViewController{
     getRestaurantsFromApi("")
     getDishesFromApi("")
   }
+  
+  override func keyboardWillHide(notification: NSNotification) {}
+  override func keyboardWillShow(notification: NSNotification) {}
+  
   @IBAction func segmentChanged(sender: UISegmentedControl) {
     self.tableView.reloadData()
   }

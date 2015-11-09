@@ -41,13 +41,14 @@ class SearchForRestaurantController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     getInfoFromApi()
+    self.isCustomSegue = false
   }
   override func willMoveToParentViewController(parent: UIViewController?) {
     print("Move to \(parent?.nibName)")
   }
   
   override func viewWillDisappear(animated: Bool) {
-    if !self.isCustomSegue{
+    if !self.isCustomSegue {
       let parent = try self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 1] as! ImHungryViewController
       parent.wishDishIdList = self.wishDishIdList
       parent.setInfo()
@@ -59,11 +60,9 @@ class SearchForRestaurantController: BaseViewController {
     super.takePhoto(sender)
   }
     
-    override func keyboardWillHide(notification: NSNotification) {
-    }
+    override func keyboardWillHide(notification: NSNotification) {}
     
-    override func keyboardWillShow(notification: NSNotification) {        
-    }
+    override func keyboardWillShow(notification: NSNotification) {}
   
     @IBAction func shareToFacebook(sender: UIButton) {
         let photo = FBSDKSharePhoto()

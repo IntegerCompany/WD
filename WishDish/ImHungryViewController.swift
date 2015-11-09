@@ -18,30 +18,33 @@ class ImHungryViewController: BaseViewController {
   @IBOutlet weak var image: UIImageView!
   @IBOutlet weak var name: UILabel!
   @IBOutlet weak var likeButton: UIButton!
-   
-    override func viewDidLoad() {
+  
+  override func viewDidLoad() {
     super.viewDidLoad()
     getDishes()
     initSwipeGestures()
   }
-    
-    override func keyboardWillShow(notification: NSNotification) {}
-    override func keyboardWillHide(notification: NSNotification) {}
-    @IBAction func shareToFacebook(sender: UIButton) {
-        let photo = FBSDKSharePhoto()
-        photo.image = image.image!
-        photo.userGenerated = true
-        let content = FBSDKSharePhotoContent()
-        content.photos = [photo]
-        let dialog = FBSDKShareDialog()
-        dialog.fromViewController = self
-        dialog.shareContent = content
-        dialog.mode = .ShareSheet
-        dialog.show()
-    }
   
-    @IBAction func shareToInstagram(sender: UIButton) {
+  override func keyboardWillShow(notification: NSNotification) {}
+  override func keyboardWillHide(notification: NSNotification) {}
+  
+  @IBAction func shareToFacebook(sender: UIButton) {
+    if FBSDKAccessToken.currentAccessToken() != nil {
+      let photo = FBSDKSharePhoto()
+      photo.image = image.image!
+      photo.userGenerated = true
+      let content = FBSDKSharePhotoContent()
+      content.photos = [photo]
+      let dialog = FBSDKShareDialog()
+      dialog.fromViewController = self
+      dialog.shareContent = content
+      dialog.mode = .ShareSheet
+      dialog.show()
     }
+  }
+  
+  @IBAction func shareToInstagram(sender: UIButton) {
+  }
   @IBAction func goToWishLish(sender: UIButton) {
     let wishLish = self.storyboard?.instantiateViewControllerWithIdentifier("WishListViewController") as! WishListViewController
     self.navigationController?.pushViewController(wishLish, animated: true)
@@ -102,27 +105,30 @@ class ImHungryViewController: BaseViewController {
     print("http://wdl.webdecision.com.ua/api/dish/\(Defaults.getUserId())")
     Alamofire.request(.GET, "http://wdl.webdecision.com.ua/api/dish/\(Defaults.getUserId())", headers:headers)
       .responseJSON{ response in
-        self.wishDishIdList.removeAll()
-        self.dishList.removeAll()
-        let data = JSON(response.result.value!)
-        print(data)
-        print(data["liked_dishes"])
-        for (_,subJson):(String, JSON) in data["liked_dishes"] {
-          self.wishDishIdList.append(Int(subJson.rawString()!)!)
-        }
-        for (_,subJson):(String, JSON) in data["random_dishes"] {
-          let dish = Dish()
-          dish.description = subJson["description"].string!
-          dish.restaurantId = Int(subJson["restaurant_id"].string!)!
-          dish.id = Int(subJson["id"].string!)!
-          dish.instagramUrl = subJson["url_instagram"].string!
-          dish.photoUrl = subJson["photo"].string!
-          dish.name = subJson["name"].string!
-          self.dishList.append(dish)
-        }
-        self.counter = 0
-        if self.dishList.count != 0{
-          self.setInfo()
+        if response.result.value != nil {
+          self.wishDishIdList.removeAll()
+          self.dishList.removeAll()
+          let data = JSON(response.result.value!)
+          print(data)
+          print(data["liked_dishes"])
+          for (_,subJson):(String, JSON) in data["liked_dishes"] {
+            self.wishDishIdList.append(Int(subJson.rawString()!)!)
+          }
+          for (_,subJson):(String, JSON) in data["random_dishes"] {
+            let dish = Dish()
+            dish.description = subJson["description"].string!
+            dish.restaurantId = Int(subJson["restaurant_id"].string!)!
+            dish.id = Int(subJson["id"].string!)!
+            dish.instagramUrl = subJson["url_instagram"].string!
+            dish.photoUrl = subJson["photo"].string!
+            dish.name = subJson["name"].string!
+            self.dishList.append(dish)
+          }
+          self.counter = 0
+          if self.dishList.count != 0{
+            self.setInfo()
+          }
+          
         }
     }
   }
@@ -136,7 +142,7 @@ class ImHungryViewController: BaseViewController {
       }
       self.name.text = self.dishList[counter].name
       if wishDishIdList.contains(self.dishList[counter].id){
-        self.likeButton.setBackgroundImage(UIImage(named: "instagram_wd"), forState: .Normal)
+        self.likeButton.setBackgroundImage(UIImage(named: "liked"), forState: .Normal)
       }else{
         self.likeButton.setBackgroundImage(UIImage(named: "wd_love_wd"), forState: .Normal)
       }

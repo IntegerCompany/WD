@@ -13,7 +13,7 @@ class SearchViewController : BaseViewController{
   @IBOutlet weak var segmentControl: UISegmentedControl!
   @IBOutlet weak var searchBar: UISearchBar!
   @IBOutlet weak var tableView: UITableView!
- 
+  
   var dishList = [Dish]()
   var restaurantList = [Restaurant]()
   
@@ -74,7 +74,7 @@ class SearchViewController : BaseViewController{
       }
       self.tableView.reloadData()
     }
-
+    
   }
   
   
@@ -116,11 +116,13 @@ extension SearchViewController : UITableViewDataSource,UITableViewDelegate{
       let restaurantDetail = self.storyboard?.instantiateViewControllerWithIdentifier("SearchForRestaurantController") as! SearchForRestaurantController
       restaurantDetail.restaurantId = self.dishList[indexPath.row].restaurantId
       restaurantDetail.dishId = self.dishList[indexPath.row].id
+      restaurantDetail.isCustomSegue = true
       self.navigationController?.pushViewController(restaurantDetail, animated: true)
     }else{
       let restaurantDetail = self.storyboard?.instantiateViewControllerWithIdentifier("SearchForRestaurantController") as! SearchForRestaurantController
       restaurantDetail.restaurantId = self.restaurantList[indexPath.row].id
-            self.navigationController?.pushViewController(restaurantDetail, animated: true)
+      restaurantDetail.isCustomSegue = true
+      self.navigationController?.pushViewController(restaurantDetail, animated: true)
     }
   }
   

@@ -29,13 +29,13 @@ class BaseViewController: ResponsiveTextFieldViewController, UIPopoverPresentati
     rightView.backgroundColor = UIColor.clearColor()
     
     let btn1 = UIButton(frame: CGRectMake(0,0,30, 30))
-    btn1.setImage(UIImage(named: "back_wd"), forState: UIControlState.Normal)
+    btn1.setImage(UIImage(named: "plus"), forState: UIControlState.Normal)
     btn1.tag=101
     btn1.addTarget(self, action: "takePhoto:", forControlEvents: UIControlEvents.TouchUpInside)
     rightView.addSubview(btn1)
     
     let btn2 = UIButton(frame: CGRectMake(40,0,30, 30))
-    btn2.setImage(UIImage(named: "fb_wd"), forState: UIControlState.Normal)
+    btn2.setImage(UIImage(named: "human"), forState: UIControlState.Normal)
     btn2.tag=102
     btn2.addTarget(self, action: "menuFromMenu:", forControlEvents: UIControlEvents.TouchUpInside)
     rightView.addSubview(btn2)

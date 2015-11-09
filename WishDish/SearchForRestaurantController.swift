@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import Alamofire
 import FBSDKShareKit
+import FBSDKLoginKit
 
 class SearchForRestaurantController: BaseViewController {
   
@@ -41,7 +42,6 @@ class SearchForRestaurantController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     getInfoFromApi()
-    self.isCustomSegue = false
   }
   override func willMoveToParentViewController(parent: UIViewController?) {
     print("Move to \(parent?.nibName)")
@@ -49,7 +49,7 @@ class SearchForRestaurantController: BaseViewController {
   
   override func viewWillDisappear(animated: Bool) {
     if !self.isCustomSegue {
-      let parent = try self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 1] as! ImHungryViewController
+      let parent = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 1] as! ImHungryViewController
       parent.wishDishIdList = self.wishDishIdList
       parent.setInfo()
     }
@@ -59,24 +59,44 @@ class SearchForRestaurantController: BaseViewController {
     self.isCustomSegue = true
     super.takePhoto(sender)
   }
-    
-    override func keyboardWillHide(notification: NSNotification) {}
-    
-    override func keyboardWillShow(notification: NSNotification) {}
   
-    @IBAction func shareToFacebook(sender: UIButton) {
-        let photo = FBSDKSharePhoto()
-        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: counter, inSection: 0)) as! SearchDishCell
-        photo.image = cell.dishImage.image!
-        photo.userGenerated = true
-        let content = FBSDKSharePhotoContent()
-        content.photos = [photo]
-        let dialog = FBSDKShareDialog()
-        dialog.fromViewController = self
-        dialog.shareContent = content
-        dialog.mode = .ShareSheet
-        dialog.show()
+  override func keyboardWillHide(notification: NSNotification) {}
+  
+  override func keyboardWillShow(notification: NSNotification) {}
+  
+  @IBAction func shareToFacebook(sender: UIButton) {
+    if FBSDKAccessToken.currentAccessToken() != nil {
+      makeSharingContent()
+    }else{
+      isCustomSegue = true
+      let login = FBSDKLoginManager()
+      login.logInWithReadPermissions(["public_profile", "email", "user_friends"], fromViewController: self, handler: { (result, error) -> Void in
+        if (error != nil) {
+          print("Process error")
+        } else if (result.isCancelled) {
+          print("Cancelled")
+        } else {
+          print("Logged in");
+          let parameters = ["update_user" : [
+            "facebook" : "\(FBSDKAccessToken.currentAccessToken().userID)",
+            "user_id" : "\(Defaults.getUserId())"
+            ]
+          ]
+          print(parameters)
+          Alamofire.request(.POST, "http://wdl.webdecision.com.ua/api/user", parameters: parameters, headers: self.headers).responseJSON{
+            response in
+            let json = JSON(response.result.value!)
+            print(response.result.value!)
+            if(response.result.value! as! NSNumber == 1){
+              print("updated successfully")
+              Defaults.setUserId(json["id"].intValue)
+              self.makeSharingContent()
+            }
+          }         
+        }
+      })
     }
+  }
   @IBAction func nextDish(sender: AnyObject) {
     if counter < dishList.count-1 {
       counter++
@@ -121,8 +141,8 @@ class SearchForRestaurantController: BaseViewController {
   
   @IBAction func book(sender: UIButton) {
     //TODO: booking
-//    let url = NSURL(string: "https://google.com")!
-//    UIApplication.sharedApplication().openURL(url)
+    //    let url = NSURL(string: "https://google.com")!
+    //    UIApplication.sharedApplication().openURL(url)
     let parameters = ["dish_id": "\(self.dishId)",
       "user_id":"\(Defaults.getUserId())"]
     print(parameters)
@@ -132,11 +152,25 @@ class SearchForRestaurantController: BaseViewController {
     }
   }
   
+  func makeSharingContent(){
+    let photo = FBSDKSharePhoto()
+    let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: counter, inSection: 0)) as! SearchDishCell
+    photo.image = cell.dishImage.image!
+    photo.userGenerated = true
+    let content = FBSDKSharePhotoContent()
+    content.photos = [photo]
+    let dialog = FBSDKShareDialog()
+    dialog.fromViewController = self
+    dialog.shareContent = content
+    dialog.mode = .ShareSheet
+    dialog.show()
+  }
+  
   func setInfo(){
     self.dishName.text = self.dishList[counter].name
     self.dishId = dishList[counter].id
     if self.wishDishIdList.contains(dishList[counter].id){
-      self.likeDishButton.setBackgroundImage(UIImage(named: "instagram_wd"), forState: .Normal)
+      self.likeDishButton.setBackgroundImage(UIImage(named: "liked"), forState: .Normal)
     }else{
       self.likeDishButton.setBackgroundImage(UIImage(named: "wd_love_wd"), forState: .Normal)
     }

@@ -18,7 +18,7 @@ class ImHungryViewController: BaseViewController ,UIDocumentInteractionControlle
   @IBOutlet weak var image: UIImageView!
   @IBOutlet weak var name: UILabel!
   @IBOutlet weak var likeButton: UIButton!
-  private var documentController:UIDocumentInteractionController!
+  private var documentController = UIDocumentInteractionController!()
   
   override func viewDidLoad() {
     super.viewDidLoad()

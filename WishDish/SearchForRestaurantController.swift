@@ -12,7 +12,7 @@ import Alamofire
 import FBSDKShareKit
 import FBSDKLoginKit
 
-class SearchForRestaurantController: BaseViewController {
+class SearchForRestaurantController: BaseViewController,UIDocumentInteractionControllerDelegate {
   
   @IBOutlet weak var wdlButton: UIButton!
   @IBOutlet weak var nextDishButton: UIButton!
@@ -25,6 +25,7 @@ class SearchForRestaurantController: BaseViewController {
   @IBOutlet weak var address: UILabel!
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var website: UILabel!
+  private var documentController = UIDocumentInteractionController!()
   
   var restaurantId = 0;
   var dishId = 0;
@@ -64,6 +65,9 @@ class SearchForRestaurantController: BaseViewController {
   
   override func keyboardWillShow(notification: NSNotification) {}
   
+  @IBAction func shareToInstagram(sender: UIButton) {
+    postToInstagram()
+  }
   @IBAction func shareToFacebook(sender: UIButton) {
     if FBSDKAccessToken.currentAccessToken() != nil {
       makeSharingContent()
@@ -151,6 +155,39 @@ class SearchForRestaurantController: BaseViewController {
       print(response.result.value!)
     }
   }
+  
+  func postToInstagram(){
+    
+    let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: counter, inSection: 0)) as! SearchDishCell
+    let image = cell.dishImage.image!
+    
+    let instagramUrl = NSURL(string: "instagram://app")
+    if(UIApplication.sharedApplication().canOpenURL(instagramUrl!)){
+      
+      //Instagram App avaible
+      
+      let imageData = UIImageJPEGRepresentation(image, 100)
+      let captionString = "Your Caption"
+      let writePath = NSTemporaryDirectory().stringByAppendingPathComponent("instagram.igo")
+      
+      if(!imageData!.writeToFile(writePath, atomically: true)){
+        //Fail to write. Don't post it
+        return
+      } else{
+        //Safe to post
+        
+        let fileURL = NSURL(fileURLWithPath: writePath)
+        self.documentController = UIDocumentInteractionController(URL: fileURL)
+        self.documentController.delegate = self
+        self.documentController.UTI = "com.instagram.exclusivegram"
+        self.documentController.annotation =  NSDictionary(object: captionString, forKey: "InstagramCaption")
+        self.documentController.presentOpenInMenuFromRect(self.view.frame, inView: self.view, animated: true)
+      }
+    } else {
+      //Instagram App NOT avaible...
+    }
+  }
+
   
   func makeSharingContent(){
     let photo = FBSDKSharePhoto()

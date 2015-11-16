@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import FBSDKShareKit
 
-class ImHungryViewController: BaseViewController {
+class ImHungryViewController: BaseViewController ,UIDocumentInteractionControllerDelegate{
   
   var counter = 0
   var dishList = [Dish]()
@@ -18,6 +18,7 @@ class ImHungryViewController: BaseViewController {
   @IBOutlet weak var image: UIImageView!
   @IBOutlet weak var name: UILabel!
   @IBOutlet weak var likeButton: UIButton!
+  private var documentController = UIDocumentInteractionController!()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -44,7 +45,9 @@ class ImHungryViewController: BaseViewController {
   }
   
   @IBAction func shareToInstagram(sender: UIButton) {
+    postToInstagram()
   }
+  
   @IBAction func goToWishLish(sender: UIButton) {
     let wishLish = self.storyboard?.instantiateViewControllerWithIdentifier("WishListViewController") as! WishListViewController
     self.navigationController?.pushViewController(wishLish, animated: true)
@@ -95,6 +98,35 @@ class ImHungryViewController: BaseViewController {
           print(response.result.value)
         }
       }
+    }
+  }
+  
+  func postToInstagram(){
+    
+    let instagramUrl = NSURL(string: "instagram://app")
+    if(UIApplication.sharedApplication().canOpenURL(instagramUrl!)){
+      
+      //Instagram App avaible
+      
+      let imageData = UIImageJPEGRepresentation(image.image!, 100)
+      let captionString = "Your Caption"
+      let writePath = NSTemporaryDirectory().stringByAppendingPathComponent("instagram.igo")
+      
+      if(!imageData!.writeToFile(writePath, atomically: true)){
+        //Fail to write. Don't post it
+        return
+      } else{
+        //Safe to post
+        
+        let fileURL = NSURL(fileURLWithPath: writePath)
+        self.documentController = UIDocumentInteractionController(URL: fileURL)
+        self.documentController.delegate = self
+        self.documentController.UTI = "com.instagram.exclusivegram"
+        self.documentController.annotation =  NSDictionary(object: captionString, forKey: "InstagramCaption")
+        self.documentController.presentOpenInMenuFromRect(self.view.frame, inView: self.view, animated: true)
+      }
+    } else {
+      //Instagram App NOT avaible...
     }
   }
   

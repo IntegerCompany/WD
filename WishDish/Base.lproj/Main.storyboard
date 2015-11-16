@@ -587,15 +587,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7jL-hq-RGd">
-                                <rect key="frame" x="526" y="72" width="54" height="54"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="54" id="Bqy-Id-2El"/>
-                                    <constraint firstAttribute="width" constant="54" id="USm-mL-plP"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="instagram_wd"/>
-                            </button>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nf8-zQ-8QE">
                                 <rect key="frame" x="526" y="134" width="54" height="54"/>
                                 <animations/>
@@ -632,6 +623,18 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7jL-hq-RGd">
+                                <rect key="frame" x="526" y="72" width="54" height="54"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="Bqy-Id-2El"/>
+                                    <constraint firstAttribute="width" constant="54" id="USm-mL-plP"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="instagram_wd"/>
+                                <connections>
+                                    <action selector="shareToInstagram:" destination="5s6-k2-VPY" eventType="touchUpInside" id="2nL-vJ-l3M"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1118,26 +1121,22 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAI-GQ-fI8" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="189" y="493" width="222" height="30"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="222" id="IA9-58-rMS"/>
-                                </constraints>
-                                <state key="normal" title="Facebook"/>
-                            </button>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z1e-BJ-kSw" customClass="RoundedBlur" customModule="WishDish" customModuleProvider="target">
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z1e-BJ-kSw" customClass="RoundedBlur" customModule="WishDish" customModuleProvider="target">
                                 <rect key="frame" x="20" y="246" width="560" height="108"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="qmk-Dp-CzD">
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="qmk-Dp-CzD">
                                     <rect key="frame" x="0.0" y="0.0" width="560" height="108"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wd_logo" translatesAutoresizingMaskIntoConstraints="NO" id="413-Ol-hXO">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="wd_logo" translatesAutoresizingMaskIntoConstraints="NO" id="413-Ol-hXO">
                                             <rect key="frame" x="180" y="32" width="200" height="43"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="413-Ol-hXO" secondAttribute="height" multiplier="46:10" constant="2.2000000000000171" id="Kx4-X6-oMk"/>
                                             </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_bg_wd" translatesAutoresizingMaskIntoConstraints="NO" id="D2y-n0-qLD">
+                                            <rect key="frame" x="-20" y="-182" width="600" height="536"/>
+                                            <animations/>
                                         </imageView>
                                     </subviews>
                                     <animations/>
@@ -1160,7 +1159,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </visualEffectView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCE-eu-H2J">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCE-eu-H2J">
                                 <rect key="frame" x="282" y="520" width="37" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Email"/>
@@ -1178,27 +1177,24 @@
                                     <action selector="register:" destination="ZVe-lr-qXl" eventType="touchUpInside" id="hVo-PX-ubH"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg_wd" translatesAutoresizingMaskIntoConstraints="NO" id="D2y-n0-qLD">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAI-GQ-fI8" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="189" y="493" width="222" height="30"/>
                                 <animations/>
-                            </imageView>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="222" id="IA9-58-rMS"/>
+                                </constraints>
+                                <state key="normal" title="Facebook"/>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Z1e-BJ-kSw" firstAttribute="centerX" secondItem="D2y-n0-qLD" secondAttribute="centerX" id="DSD-C3-466"/>
                             <constraint firstItem="Z1e-BJ-kSw" firstAttribute="leading" secondItem="28L-2s-JPy" secondAttribute="leadingMargin" id="E3o-DF-9DL"/>
-                            <constraint firstItem="fCE-eu-H2J" firstAttribute="centerX" secondItem="D2y-n0-qLD" secondAttribute="centerX" id="O8f-zk-ArN"/>
-                            <constraint firstItem="D2y-n0-qLD" firstAttribute="top" secondItem="hdu-N8-2iH" secondAttribute="bottom" id="QTq-RS-WlH"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="D2y-n0-qLD" secondAttribute="trailing" constant="-20" id="S11-3G-gEv"/>
                             <constraint firstItem="wAI-GQ-fI8" firstAttribute="top" secondItem="BlC-6E-dPp" secondAttribute="bottom" constant="8" id="ap7-aH-Ngo"/>
-                            <constraint firstItem="D2y-n0-qLD" firstAttribute="leading" secondItem="28L-2s-JPy" secondAttribute="leadingMargin" constant="-20" id="cSw-XU-ulR"/>
                             <constraint firstItem="fCE-eu-H2J" firstAttribute="top" secondItem="wAI-GQ-fI8" secondAttribute="bottom" constant="-3" id="gbj-HB-GRl"/>
-                            <constraint firstItem="AEZ-ye-3UP" firstAttribute="top" secondItem="D2y-n0-qLD" secondAttribute="bottom" id="kMe-He-tkz"/>
                             <constraint firstItem="BlC-6E-dPp" firstAttribute="centerX" secondItem="28L-2s-JPy" secondAttribute="centerX" id="lZv-xy-jOy"/>
                             <constraint firstItem="AEZ-ye-3UP" firstAttribute="top" secondItem="wAI-GQ-fI8" secondAttribute="bottom" constant="77" id="uoE-Fb-m7u"/>
                             <constraint firstItem="wAI-GQ-fI8" firstAttribute="centerX" secondItem="28L-2s-JPy" secondAttribute="centerX" id="wU6-Qu-12e"/>
-                            <constraint firstItem="Z1e-BJ-kSw" firstAttribute="centerY" secondItem="D2y-n0-qLD" secondAttribute="centerY" constant="-32" id="y0s-yq-RJv"/>
                         </constraints>
                     </view>
                     <connections>

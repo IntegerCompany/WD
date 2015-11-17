@@ -18,7 +18,7 @@ class ImHungryViewController: BaseViewController ,UIDocumentInteractionControlle
   @IBOutlet weak var image: UIImageView!
   @IBOutlet weak var name: UILabel!
   @IBOutlet weak var likeButton: UIButton!
-  private var documentController = UIDocumentInteractionController!()
+    private var documentController : UIDocumentInteractionController?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -114,19 +114,24 @@ class ImHungryViewController: BaseViewController ,UIDocumentInteractionControlle
       
       if(!imageData!.writeToFile(writePath, atomically: true)){
         //Fail to write. Don't post it
+        print("Intagram : Fail to write")
         return
       } else{
         //Safe to post
-        
+        print("Intagram : Safe to post")
+        let h = self.view.frame.height/2
+        let w = self.view.frame.width/2
+        let rect = CGRectMake(w, h, 0, 0)
         let fileURL = NSURL(fileURLWithPath: writePath)
         self.documentController = UIDocumentInteractionController(URL: fileURL)
-        self.documentController.delegate = self
-        self.documentController.UTI = "com.instagram.exclusivegram"
-        self.documentController.annotation =  NSDictionary(object: captionString, forKey: "InstagramCaption")
-        self.documentController.presentOpenInMenuFromRect(self.view.frame, inView: self.view, animated: true)
+        self.documentController!.delegate = self
+        self.documentController!.UTI = "com.instagram.exclusivegram"
+        self.documentController!.annotation =  NSDictionary(object: captionString, forKey: "InstagramCaption")
+        self.documentController!.presentOpenInMenuFromRect(rect, inView: self.view, animated: true)
       }
     } else {
       //Instagram App NOT avaible...
+        print("Intagram : Instagram App NOT avaible..")
     }
   }
   

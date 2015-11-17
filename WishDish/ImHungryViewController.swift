@@ -18,7 +18,7 @@ class ImHungryViewController: BaseViewController ,UIDocumentInteractionControlle
   @IBOutlet weak var image: UIImageView!
   @IBOutlet weak var name: UILabel!
   @IBOutlet weak var likeButton: UIButton!
-    private var documentController : UIDocumentInteractionController?
+  private var documentController : UIDocumentInteractionController?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -31,21 +31,25 @@ class ImHungryViewController: BaseViewController ,UIDocumentInteractionControlle
   
   @IBAction func shareToFacebook(sender: UIButton) {
     if FBSDKAccessToken.currentAccessToken() != nil {
-      let photo = FBSDKSharePhoto()
-      photo.image = image.image!
-      photo.userGenerated = true
-      let content = FBSDKSharePhotoContent()
-      content.photos = [photo]
-      let dialog = FBSDKShareDialog()
-      dialog.fromViewController = self
-      dialog.shareContent = content
-      dialog.mode = .ShareSheet
-      dialog.show()
+      if(dishList.count != 0){
+        let photo = FBSDKSharePhoto()
+        photo.image = image.image!
+        photo.userGenerated = true
+        let content = FBSDKSharePhotoContent()
+        content.photos = [photo]
+        let dialog = FBSDKShareDialog()
+        dialog.fromViewController = self
+        dialog.shareContent = content
+        dialog.mode = .ShareSheet
+        dialog.show()
+      }
     }
   }
   
   @IBAction func shareToInstagram(sender: UIButton) {
-    postToInstagram()
+    if(dishList.count != 0){
+      postToInstagram()
+    }
   }
   
   @IBAction func goToWishLish(sender: UIButton) {
@@ -61,11 +65,14 @@ class ImHungryViewController: BaseViewController ,UIDocumentInteractionControlle
   }
   
   @IBAction func like(sender: UIButton) {
-    let restaurantDetail = self.storyboard?.instantiateViewControllerWithIdentifier("SearchForRestaurantController") as! SearchForRestaurantController
-    restaurantDetail.restaurantId = self.dishList[counter].restaurantId
-    restaurantDetail.dishId = self.dishList[counter].id
-    restaurantDetail.wishDishIdList = self.wishDishIdList
-    self.navigationController?.pushViewController(restaurantDetail, animated: true)
+    if(dishList.count != 0){
+      let restaurantDetail = self.storyboard?.instantiateViewControllerWithIdentifier("SearchForRestaurantController") as! SearchForRestaurantController
+      restaurantDetail.restaurantId = self.dishList[counter].restaurantId
+      restaurantDetail.dishId = self.dishList[counter].id
+      restaurantDetail.wishDishIdList = self.wishDishIdList
+      self.navigationController?.pushViewController(restaurantDetail, animated: true)
+      setInfo()
+    }
   }
   
   @IBAction func addToWishList(sender: UIButton) {
@@ -131,7 +138,7 @@ class ImHungryViewController: BaseViewController ,UIDocumentInteractionControlle
       }
     } else {
       //Instagram App NOT avaible...
-        print("Intagram : Instagram App NOT avaible..")
+      print("Intagram : Instagram App NOT avaible..")
     }
   }
   
@@ -165,7 +172,6 @@ class ImHungryViewController: BaseViewController ,UIDocumentInteractionControlle
           if self.dishList.count != 0{
             self.setInfo()
           }
-          
         }
     }
   }

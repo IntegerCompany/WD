@@ -333,7 +333,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INN-aa-5j1">
-                                <rect key="frame" x="279" y="79" width="42" height="20.5"/>
+                                <rect key="frame" x="279" y="79" width="42" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -399,7 +399,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lI9-yi-KXO">
-                                <rect key="frame" x="20" y="107.5" width="560" height="305.5"/>
+                                <rect key="frame" x="20" y="108" width="560" height="306"/>
                                 <animations/>
                             </imageView>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qG-4Q-X7Y">
@@ -426,6 +426,10 @@
                                     <action selector="shareToInstagram:" destination="1TW-Hq-mXC" eventType="touchUpInside" id="ZWc-o0-3U2"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="CDK-9A-rwc">
+                                <rect key="frame" x="290" y="251" width="20" height="20"/>
+                                <animations/>
+                            </activityIndicatorView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -442,6 +446,7 @@
                             <constraint firstItem="lI9-yi-KXO" firstAttribute="top" secondItem="Ggm-w3-4WA" secondAttribute="bottom" constant="-53.5" id="JDe-pP-n8q"/>
                             <constraint firstItem="lI9-yi-KXO" firstAttribute="trailing" secondItem="b1L-nn-f29" secondAttribute="trailingMargin" id="Lol-FA-9S5"/>
                             <constraint firstItem="INN-aa-5j1" firstAttribute="centerX" secondItem="b1L-nn-f29" secondAttribute="centerX" id="Rh9-i7-hmH"/>
+                            <constraint firstItem="CDK-9A-rwc" firstAttribute="centerX" secondItem="lI9-yi-KXO" secondAttribute="centerX" id="VPf-GR-Mek"/>
                             <constraint firstItem="lI9-yi-KXO" firstAttribute="leading" secondItem="b1L-nn-f29" secondAttribute="leadingMargin" id="YdC-N6-Mf6"/>
                             <constraint firstItem="bsd-vQ-aNx" firstAttribute="top" secondItem="hcS-IF-TfM" secondAttribute="bottom" constant="15" id="ZCN-Jr-8yj"/>
                             <constraint firstItem="bsd-vQ-aNx" firstAttribute="leading" secondItem="r4m-1R-MzW" secondAttribute="leading" id="bmh-Pw-e7l"/>
@@ -451,6 +456,7 @@
                             <constraint firstItem="AYM-zh-5AC" firstAttribute="top" secondItem="bsd-vQ-aNx" secondAttribute="bottom" constant="8" id="q9R-Ch-8IW"/>
                             <constraint firstItem="r4m-1R-MzW" firstAttribute="leading" secondItem="lI9-yi-KXO" secondAttribute="leading" id="vzT-VG-hBy"/>
                             <constraint firstItem="lI9-yi-KXO" firstAttribute="top" secondItem="INN-aa-5j1" secondAttribute="bottom" constant="8" id="w8T-sN-2vM"/>
+                            <constraint firstItem="CDK-9A-rwc" firstAttribute="centerY" secondItem="lI9-yi-KXO" secondAttribute="centerY" id="yUg-xO-gMU"/>
                         </constraints>
                     </view>
                     <connections>

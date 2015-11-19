@@ -7,6 +7,7 @@ target 'WishDish' do
   pod 'FBSDKCoreKit', :git => 'https://github.com/facebook/facebook-ios-sdk.git', :branch => 'dev'
   pod 'FBSDKLoginKit', :git => 'https://github.com/facebook/facebook-ios-sdk.git', :branch => 'dev'
   pod 'FBSDKShareKit'
+  pod 'Alamofire', '~> 3.0'
 
 end
 

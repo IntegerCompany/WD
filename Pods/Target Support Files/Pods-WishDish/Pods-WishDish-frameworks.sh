@@ -84,12 +84,14 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-WishDish/Alamofire.framework"
   install_framework "Pods-WishDish/Bolts.framework"
   install_framework "Pods-WishDish/FBSDKCoreKit.framework"
   install_framework "Pods-WishDish/FBSDKLoginKit.framework"
   install_framework "Pods-WishDish/FBSDKShareKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-WishDish/Alamofire.framework"
   install_framework "Pods-WishDish/Bolts.framework"
   install_framework "Pods-WishDish/FBSDKCoreKit.framework"
   install_framework "Pods-WishDish/FBSDKLoginKit.framework"

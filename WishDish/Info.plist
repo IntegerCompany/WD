@@ -4,6 +4,7 @@
 <dict>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>instagram</string>
 		<string>fbauth2</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
@@ -53,8 +54,12 @@
 	<string>1473577369617129</string>
 	<key>FacebookDisplayName</key>
 	<string>Dish list</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location is used for restaurant information.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>facebook.com</key>

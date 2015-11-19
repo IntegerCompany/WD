@@ -9,6 +9,22 @@
 import UIKit
 
 class SearchDishCell : UITableViewCell {
-    
     @IBOutlet weak var dishImage: UIImageView!
 }
+
+class SearchCell : UITableViewCell{
+  
+  @IBOutlet weak var name: UILabel!
+}
+
+class WishDishlistCell : UITableViewCell{
+  @IBOutlet weak var dishImage: UIImageView!
+  @IBOutlet weak var counter: UILabel!
+  @IBOutlet weak var dishDescription: UILabel!
+  
+  @IBAction func yButton(sender: UIButton) {
+  }
+  @IBAction func nButton(sender: UIButton) {
+  }
+}
+
